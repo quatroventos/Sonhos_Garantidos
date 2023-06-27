@@ -1,0 +1,55 @@
+
+	<?
+		$mysql->filtro = " where tipo = 'pagamentos' ";
+		$pagamentos = $mysql->read_unico("configs");
+
+		$mysql->filtro = " where ".STATUS." AND cadastro = '".$cadastro_pd->id."' ORDER BY ".ORDER." ";
+		$cadastro_saques = $mysql->read("cadastro_saques");
+
+		$saldo_aguardando = 0;
+		$saldo_retirado = 0;
+
+		foreach ($cadastro_saques as $key => $value) {
+			if($value->situacao == 1){
+				$saldo_retirado += $value->preco;
+			} else {
+				$saldo_aguardando += $value->preco;
+			}
+		}
+	?>
+
+    <div>
+
+        <div class="">
+            <div class="wr4">
+                <div class="">Saldo disponível para saque</div>
+                <div class="pt10 fz20 cor_<?=COR1?>"><?=preco($cadastro_pd->saldo, 1)?></div>
+            </div>
+
+            <div class="wr4">
+                <div class="">Aguardando liberação</div>
+                <div class="pt10 fz20 cor_999"><?=preco($saldo_aguardando, 1)?></div>
+            </div>
+
+            <div class="wr4">
+                <a onclick="boxs('saques', 'id=0')" class="db w100p p10 fz20 fwb tac cor_fff bd0 back_<?=COR1?> br20">Solicitar saque</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="pt20">
+            <div class="wr4">
+                <div class="">Valor Retirado</div>
+                <div class="pt10 fz20 cor_999"><?=preco($saldo_retirado, 1)?></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="pt20 fz12">
+			<div class="fwb">Taxas:</div>
+			<div class="pt5">*Por Doação: <?=preco($pagamentos->preco2, 1)?> (já cobrado no pagamento da doação)</div>
+			<div class="pt5">*Da Plataforma: <?=preco($pagamentos->preco4)?>% (já cobrado no pagamento da doação)</div>
+			<div class="pt5">*Por Saque: <?=preco($pagamentos->preco3, 1)?> (será cobrado na hora do saque)</div>
+		</div>
+
+    </div>

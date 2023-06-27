@@ -1,0 +1,184 @@
+
+	<section id="home">
+
+		<? if(isset($banner[1])){ ?>
+			<div class="banner_home">
+				<div class="Plugin1 pagg1 po-h Plugin_grande" itens="1" auto="30">
+			    	<? foreach ($banner[1] as $key => $value) { ?>
+			    		<div class="">
+			    			<?=banner($value, 0, 0, ' class="db m-a" ')?>
+			    		</div>
+		        	<? } ?>
+				</div>
+		        <div class="clear"></div>
+			</div>
+			<style>
+				.banner_home .owl-buttons { display: block; }
+				.banner_home .plugin_paginacao { display: none; }
+				@media (max-width: 700px){
+				.banner_home .owl-buttons { display: none; }
+					.banner_home .plugin_paginacao { display: block; }
+				}
+			</style>
+		<? } ?>
+
+
+
+		<div class="posr z1 mt-40">
+			<div class="centerr">
+				<? for ($i=1; $i <= 3; $i++) { ?>
+					<?
+						$nome = 'nome_1_'.$i;
+						$txt = 'txt_1_'.$i;
+						$link = 'link_1_'.$i;
+
+						$img->foto = 'foto_1_'.$i;
+					?>
+					<div class="posr wr4 p20 pt0">
+						<div class="pl40 pr40 pb60 flexx flex_c flex_ac" style="height: 450px; background: url(<?=$img->img($textos[6], 0, 0, 1)?>) #222838 center no-repeat; -webkit-border-radius: 0 0 200px 200px !important; -moz-border-radius: 0 0 200px 200px !important; border-radius: 0 0 200px 200px !important;">
+							<a <?=$textos[6]->$link ? 'href="'.http($textos[6]->$link).'"' : ''?> class="cor_fff">
+								<div class="fz30 fwb9 tac"><?=$textos[6]->$nome?></div>
+								<div class="pt20 fz16 lh20 tac"><?=$textos[6]->$txt?></div>
+							</a>
+						</div>
+						<? if($textos[6]->$link){ ?>
+							<div class="posa w100p mt-80 ml-20 tac">
+								<a href="<?=http($textos[6]->$link)?>" class="dib w50 h50 pt4 pl4 cor_fff back_<?=COR1?> br50p"><i class="faa-angle-right fz40 fwb cor_fff"></i></a>
+							</div>
+						<? } ?>
+					</div>
+				<? } ?>
+				<div class="clear"></div>
+			</div>
+		</div>
+
+
+		<div class="pt80">
+			<div class="centerr">
+				<div class="wr6 pr40 p0_1000">
+					<? $img->tags = ' class="max-w100p br20" '; ?>
+					<? $img->foto = 'foto_2'; ?>
+					<?=$img->img($textos[6])?>
+				</div>
+				<div class="wr6">
+					<div class="pt60 fz45 fwb9"><?=$textos[6]->nome_2?></div>
+					<div class="pt20 fz16 lh24"><?=$textos[6]->txt_2?></div>
+					<div class="pt40">
+						<div class="posa w35 h35 pt6 tac cor_fff back_<?=COR1?> br50p"><i class="faa-check fz20 cor_fff"></i></div>
+						<div class="pl60">
+							<div class="fz24 fwb9"><?=$textos[6]->frase_2_1?></div>
+							<div class="pt10 fz16 lh20"><?=$textos[6]->frase_2_1_1?></div>
+						</div>
+					</div>
+					<div class="pt20">
+						<div class="posa w35 h35 pt6 tac cor_fff back_<?=COR1?> br50p"><i class="faa-check fz20 cor_fff"></i></div>
+						<div class="pl60">
+							<div class="fz24 fwb9"><?=$textos[6]->frase_2_2?></div>
+							<div class="pt10 fz16 lh20"><?=$textos[6]->frase_2_2_1?></div>
+						</div>
+					</div>
+					<? if($textos[6]->link_2){ ?>
+						<div class="pt40 tar">
+							<a href="<?=http($textos[6]->link_2)?>" class="dib p10 pl40 pr40 fz20 fwb cor_fff back_<?=COR1?> br20">Acessar</a>
+						</div>
+					<? } ?>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+
+
+		<div class="pt80 pb60">
+			<div class="centerr">
+				<div class="">
+					<div class="wr6 pr20 fz45 fwb9"><?=$textos[6]->nome_3?></div>
+					<div class="wr6 pl20 fz16 lh24"><?=$textos[6]->txt_3?></div>
+					<div class="clear"></div>
+				</div>
+
+				<div class="pt40">
+					<div class="Plugin1 no_pagg po-h Plugin_grande1" itens="3" auto="30">
+						<? foreach ($doacoes as $key => $value) { ?>
+							<div class="p15">
+								<? include DIR_F.'/views/z_doacao.phtml'; ?>
+							</div>
+						<? } ?>
+					</div>
+				</div>
+		        <div class="clear"></div>
+			</div>
+		</div>
+
+
+
+
+		<div class="pt60 pb60" style="background: url(<?=DIR?>/web/img/01.jpg);">
+			<div class="centerr">
+				<div class="">
+					<div class="wr6 pr20 fz45 fwb9 cor_fff"><?=$textos[6]->nome_4?></div>
+					<div class="wr6 pl20 fz16 lh24 cor_fff"><?=$textos[6]->txt_4?></div>
+					<div class="clear"></div>
+				</div>
+
+				<div class="pt40">
+					<div class="Plugin1 no_pagg po-h Plugin_grande1" itens="3" auto="30">
+						<? foreach ($depoimentos as $key => $value) { ?>
+							<div class="p15">
+								<div class="back_fff br20">
+							        <div class="">
+							            <? $img->tags = ' class="db max-w100p m-a brb100" '; ?>
+							            <?=$img->img($value, 200, 170)?>
+							        </div>
+							        <div class="p20 tp40 tac">
+							            <div class="h120 fz14 lh24 o-h"><?=$value->txt?></div>
+							            <div class="pt20 pb20 h24 fz20 fwb limit"><?=$value->nome?></div>
+							        </div>
+								</div>
+							</div>
+						<? } ?>
+					</div>
+				</div>
+		        <div class="clear"></div>
+			</div>
+		</div>
+
+
+
+
+
+		<div class="pt60 pb60">
+			<div class="centerr">
+				<div class="">
+					<div class="wr6 pr20 fz45 fwb9 p0_1000">ÚLTIMAS NOTÍCIAS</div>
+					<div class="wr6 pl20 fz16 lh24 tar dn_1000">
+						<a href="<?=DIR?>/blog/"><span class="dib pr10 fz24 fwb vam cor_<?=COR1?>">Ver mais</span> <span class="dib w50 h50 pt4 tac vam cor_fff back_<?=COR1?> br50p"><i class="faa-angle-right fz40 fwb cor_fff"></i></span></a>
+					</div>
+					<div class="clear"></div>
+				</div>
+
+				<div class="pt40">
+					<div class="Plugin1 no_pagg po-h Plugin_grande1" itens="3" auto="30">
+						<? foreach ($blogs as $key => $value) { ?>
+							<div class="p15">
+							    <div class="">
+							    	<a href="<?=url('blog', $value)?>">
+								        <div class="">
+								            <? $img->tags = ' class="db max-w100p m-a brt20" '; ?>
+								            <?=$img->img($value)?>
+								        </div>
+								        <div class="p20 bs1">
+								            <div class="h24 fz20 fwb limit"><?=$value->nome?></div>
+								            <div class="pt10 h110 fz14 lh24 o-h"><?=$value->txt?></div>
+								        </div>
+								    </a>
+					                <a href="<?=url('blog', $value)?>" class="db p15 tac fz20 fwb cor_fff brb20 bs1" style="<?=degrade('140deg, #DE9447 0%, #D8C292 90%')?>">Acessar</a>
+							    </div>
+							</div>
+						<? } ?>
+					</div>
+				</div>
+		        <div class="clear"></div>
+			</div>
+		</div>
+
+	</section>

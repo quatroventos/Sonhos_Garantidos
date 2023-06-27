@@ -1,0 +1,49 @@
+
+	<div class="pt20 pb20"> 
+
+        <div class="fz16">
+            <div class=""> <b class="dib w120 pb10">Nome:</b> <span class="dib pb10"><?=$cadastro_pd->nome?> <?=existe($cadastro_pd, 'sobrenome')?></span> </div> 
+            <div class=""> <b class="dib w120 pb10">CPF:</b> <span class="dib pb10"><?=$cadastro_pd->cpf?></span> </div> 
+
+            <div class=""> <b class="dib w120 pb10">Email:</b> <span class="dib pb10"><?=$cadastro_pd->email?></span> </div> 
+
+            <? if(isset($cadastro_pd->telefone) AND $cadastro_pd->telefone){ ?>
+                <div class=""> <b class="dib w120 pb10">Telefone:</b> <span class="dib pb10"><?=$cadastro_pd->telefone?></span> </div> 
+            <? } ?>
+
+            <? if(isset($cadastro_pd->whatsapp) AND $cadastro_pd->whatsapp){ ?>
+                <div class=""> <b class="dib w120 pb10">Whatsapp:</b> <span class="dib pb10"><?=$cadastro_pd->whatsapp?></span> </div> 
+            <? } ?>
+
+            <? if(isset($cadastro_pd->celular) AND $cadastro_pd->celular){ ?>
+                <div class=" "> <b class="dib w120 pb10">Celular:</b> <?=$cadastro_pd->celular?> </div> 
+            <? } ?>
+
+
+            <? if(isset($cadastro_pd->pix_chave) AND $cadastro_pd->pix_chave){ ?>
+                <div class="">
+					<b class="dib w120 pb10">Pix:</b> <?=$cadastro_pd->pix_chave?> 
+					<? if($cadastro_pd->pix_tipo){ ?>
+						<?=$cadastro_pd->pix_tipo == 1 ? '(CPF/CNPJ)' : ''?>
+						<?=$cadastro_pd->pix_tipo == 2 ? '(Celular)' : ''?>
+						<?=$cadastro_pd->pix_tipo == 3 ? '(Email)' : ''?>
+						<?=$cadastro_pd->pix_tipo == 4 ? '(Aleatório)' : ''?>
+					<? } ?>
+				</div> 
+            <? } ?>
+
+
+
+            <div class=""> <b class="dib w120">Endereço:</b> <?=$cadastro_pd->rua?><?=$cadastro_pd->numero ? ', '.$cadastro_pd->numero : ''?> <?=$cadastro_pd->complemento?> <?=$cadastro_pd->bairro ? '- '.$cadastro_pd->bairro : ''?> - <?=$cadastro_pd->cidades?>/<?=$cadastro_pd->estados?> </div> 
+
+
+            <div class="h20"></div> 
+            <a onclick="boxs('cadastro_editar', '', 1)" class="cor_337ab7 link">Editar Dados</a>
+            <? if($cadastro_pd->senha != 'facebook'){ ?>
+                &nbsp; | &nbsp; 
+                <a onclick="boxs('cadastro_editar_senha')" class="cor_337ab7 link">Editar Senha</a>
+             <? } ?>
+        </div>
+
+	</div>
+

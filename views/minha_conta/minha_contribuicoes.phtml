@@ -1,0 +1,33 @@
+
+    <div class="">
+        <div class="table_mobile">
+            <table class="w100p fz13">
+                <tr>
+                    <td class="p10 bdt_eee bdb_eee bdl_eee">
+                        <div class="fwb">Sonho</div>
+                    </td>
+                    <td class="p10 tac bdt_eee bdb_eee bdl_eee">
+                        <div class="fwb">Valor</div>
+                    </td>
+                    <td class="p10 tac bdt_eee bdb_eee bdl_eee bdr_eee">
+                        <div class="fwb">Status</div>
+                    </td>
+                </tr>
+                <? foreach ($consulta as $key => $value) { ?>
+                    <tr>
+                        <td class="p10 bdt_eee bdb_eee bdl_eee">
+                            <div class="pt5"><?=$value->nome?></div>
+                        </td>
+                        <td class="p10 tac bdt_eee bdb_eee bdl_eee">
+                            <div class="pt5"><?=preco($value->preco)?></div>
+                        </td>
+                        <td class="p10 tac bdt_eee bdb_eee bdl_eee bdr_eee">
+                            <div class="pt5"><?=doacoes_situacao($value->situacao)?></div>
+                        </td>
+                    </tr>
+                <? } ?>
+            </table>
+            <div class="pt10"><?=$pagg?></div>
+        </div>
+    </div>
+

@@ -1,0 +1,70 @@
+
+	<? $_POST['preco_doacao'] = $_POST['preco_doacao']*100; ?>
+
+	<section id="doacao_pagamento_fim">
+
+        <div class="">
+            <img src="<?=DIR?>/web/img/05.jpg" class="db m-a">
+        </div>
+
+		<?
+			if($_GET['categorias'] == 'Boleto' OR $_GET['categorias'] == 'Pix'){
+				$mysql->prepare = array($_GET['nome']);
+				$mysql->filtro = " WHERE ".STATUS." AND id = ? AND cadastro = '".$_SESSION['x_site']->id."' ";
+				$pedidos = $mysql->read_unico('doacoes_pagamentos');
+
+				echo '<div class="pt60 pb60">';
+					echo '<div class="centerr">';
+			    		include DIR_F.'/app/Ajax/Pagamentos/pagar_fim.php';
+					echo '</div>';
+				echo '</div>';
+
+
+			} elseif(isset($_POST['preco_doacao']) AND isset($_POST['metodo']) AND $_POST['metodo']){
+				if($_POST['preco_doacao'] < 2500){
+					echo '<script> ';
+						echo 'alert("O Valor tem que ser Maior ou Igual a R$ 25!"); ';
+						echo 'window.parent.location = "'.DIR.'/doacao_pagamento/-/'.$_GET['id'].'/"; ';
+					echo '</script> ';
+					exit();
+
+				} else {
+			        if(isset($_POST['preco_doacao']))  $_POST['preco_doacao'] = preco_X($_POST['preco_doacao']);
+	
+					$mysql->campo['nome'] = $item->nome;
+					$mysql->campo['cadastro'] = $cadastro_pd->id;
+					$mysql->campo['doacoes'] = $item->id;
+					$mysql->campo['preco'] = $_POST['preco_doacao'];
+					$mysql->campo['metodo'] = $_POST['metodo'];
+					$ult_id = $mysql->insert('doacoes_pagamentos');
+	
+					if($ult_id){
+						$mysql->filtro = " WHERE ".STATUS." AND id = '".$ult_id."' AND cadastro = '".$_SESSION['x_site']->id."' ";
+						$pedidos = $mysql->read_unico('doacoes_pagamentos');
+	
+						$arr = array();
+						include DIR_F.'/app/Ajax/Pagamentos/Pagarme/index.php';
+	
+	
+	
+	
+					} else {
+						echo '<script> ';
+							echo 'alert("Não foi possivel finalizar o pedido, tente novamente!"); ';
+							echo 'window.parent.location = "'.DIR.'/doacao_pagamento/-/'.$_GET['id'].'/"; ';
+						echo '</script> ';
+						exit();
+					}
+				}
+
+
+			} else {
+				echo '<script> ';
+					echo 'alert("Não foi possivel finalizar o pedido, tente novamente!"); ';
+					echo 'window.parent.location = "'.DIR.'/doacao_pagamento/-/'.$_GET['id'].'/"; ';
+				echo '</script> ';
+				exit();
+			}
+        ?>
+
+	</section>

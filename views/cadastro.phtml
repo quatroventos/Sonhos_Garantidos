@@ -1,0 +1,177 @@
+
+	<section id="cadastro">
+
+		<? if(isset($_GET['pg']) AND $_GET['pg'] == 'cadastro' AND !isset($_GET['include_cadsatroo'])){ ?>
+			<? location(DIR.'/'.DIR_G.'&abrir=BOX_CADASTRO'); ?>
+
+
+		<? } else { ?>
+
+            <form id="form_cadastro" method="post" action="">
+
+                <div class="wr6 p10">
+                    <div class="fz16 fwb">Nome</div>
+                    <div class="pt5">
+                        <input type="text" name="nome" class="design w100p" placeholder="Digite aqui" required>
+                    </div>
+                </div>
+                <div class="wr6 p10">
+                    <div class="fz16 fwb">CPF</div>
+                    <div class="pt5">
+                        <input type="text" name="cpf" class="cpf design w100p" placeholder="Digite aqui" required>
+                    </div>
+                </div>
+                <div class="clear"></div>
+
+
+                <div class="wr6 p10">
+                    <div class="fz16 fwb">Email</div>
+                    <div class="pt5">
+                        <input type="email" name="email" class="design w100p" placeholder="Digite aqui" required autocomplete="off">
+                    </div>
+                </div>
+                <div class="wr6 p10">
+                    <div class="fz16 fwb">Telefone</div>
+                    <div class="pt5">
+                        <input type="tel" name="telefone" class="design w100p" placeholder="Digite aqui" required>
+                    </div>
+                </div>
+                <div class="clear"></div>
+
+
+                <div class="wr2 p10">
+                    <div class="fz16 fwb">Cep*</div>
+                    <div class="pt5">
+                        <input type="text" name="cep" id="cep" class="design w100p" placeholder="Digite aqui" required onblur="cepp(this)" required autocomplete="off">
+                    </div>
+                </div>
+                <div class="wr6 p10">
+                    <div class="fz16 fwb">Endereço*</div>
+                    <div class="pt5">
+                        <input type="text" name="rua" id="rua" class="design w100p" placeholder="Digite aqui" required  autocomplete="off">
+                    </div>
+                </div>
+                <div class="wr2 p10">
+                    <div class="fz16 fwb">Número*</div>
+                    <div class="pt5">
+                        <input type="text" name="numero" id="numero" class="design w100p" placeholder="Digite aqui" required autocomplete="off">
+                    </div>
+                </div>
+                <div class="wr2 p10">
+                    <div class="fz16 fwb">Complemento</div>
+                    <div class="pt5">
+                        <input type="text" name="complemento" id="complemento" class="design w100p" placeholder="Digite aqui" autocomplete="off">
+                    </div>
+                </div>
+                <div class="clear"></div>
+
+
+                <div class="wr4 p10">
+                    <div class="fz16 fwb">Bairro*</div>
+                    <div class="pt5">
+                        <input type="text" name="bairro" id="bairro" class="design w100p" placeholder="Digite aqui" required autocomplete="off">
+                    </div>
+                </div>
+                <div class="wr4 p10">
+                    <div class="fz16 fwb">Estados*</div>
+                    <div class="pt5">
+                        <select name="estados" id="estados" class="design w100p" required rel_estados="cidades" onchange="rel_estados(this)">
+                            <option value=""> - - - </option>
+                            <?
+                                if(file_exists(DIR_F.'/plugins/Json/localidades/estados.json')){
+                                    $json = json_decode(file_get_contents(DIR_F.'/plugins/Json/localidades/estados.json'));
+                                    foreach($json as $value){
+                                        echo '<option value="'.$value->sigla.'"> ';
+                                            echo $value->nome;
+                                        echo '</option> ';
+                                    }
+                                }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="wr4 p10">
+                    <div class="fz16 fwb">Cidades*</div>
+                    <div class="pt5">
+                        <select name="cidades" id="cidades" class="design w100p" required>
+                            <option value=""> - - - </option>
+                        </select>
+                    </div>
+                </div>
+                <style>.select2-selection__rendered { font-size: 12px !important; } </style>
+                <div class="clear"></div>
+
+
+                <div class="">
+	                <div class="wr6 p10">
+	                    <div class="fz16 fwb">Pix (tipo):</div>
+	                    <div class="pt5">
+	                        <select name="pix_tipo" id="pix_tipo" class="design w100p">
+	                            <option value="0"> - - - - </option>
+	                            <option value="1">CPF/CNPJ</option>
+	                            <option value="2">Celular</option>
+	                            <option value="3">Email</option>
+	                            <option value="4">Aleatório</option>
+	                        </select>
+	                    </div>
+	                </div>
+	                <div class="wr6 p10">
+	                    <div class="fz16 fwb">Pix (Chave):</div>
+	                    <div class="pt5">
+	                        <input type="text" name="pix_chave" class="design w100p">
+	                    </div>
+	                </div>
+	                <div class="clear"></div>
+                </div>
+
+
+
+
+                <div class="remove_edit">
+	                <div class="wr6 p10">
+	                    <div class="fz16 fwb">Senha</div>
+	                    <div class="pt5">
+	                        <input type="password" name="senha" class="design w100p" placeholder="Digite aqui" required autocomplete="off">
+	                    </div>
+	                </div>
+	                <div class="wr6 p10">
+	                    <div class="fz16 fwb">Confirmar a Senha</div>
+	                    <div class="pt5">
+	                        <input type="password" name="c_senha" class="design w100p" placeholder="Digite aqui" required>
+	                    </div>
+	                </div>
+	                <div class="clear"></div>
+                </div>
+
+
+                <div class="pt20">
+					<div class="wr9 remove_edit">
+						<label>
+							<input type="checkbox" name="termos" value="1" required>
+							Eu aceito os <a href="<?=DIR?>/textos/<?=amg(1)?>/1/" target="_blank" class="link c_azul">Termos de Uso</a>.
+						</label>
+					</div>
+					<div class="wr3 tar">
+                        <div class=""><button class="dib p10 pl60 pr60 fz20 fwb cor_fff bd0 back_<?=COR1?> br20">Cadastrar</button></div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <? if(isset($_GET['nome'])){ ?>
+                    <? $url = $_GET['nome'] ?>
+                    <? $url .= $_GET['id']!='-' ? '/'.$_GET['id'] : ($_GET['categorias']!='-' ? '/-' : ''); ?>
+                    <? $url .= $_GET['categorias']!='-' ? '/'.$_GET['categorias'] : ''; ?>
+                    <input type="hidden" name="direcionar" value="<?=$url?>" />
+                <? } ?>
+
+                <input type="hidden" name="gravar" value="1">
+            </form>
+            <script>ajaxForm('form_cadastro', 'cadastro.php')</script>
+            <div class="clear"></div>
+
+
+	        <style>.carregando_endereco { display: none !important; }</style>
+		<? } ?>
+
+	</section>
+

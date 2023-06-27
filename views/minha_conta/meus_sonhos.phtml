@@ -1,0 +1,207 @@
+
+    <div>
+        <!-- EXCLUR ITENS -->
+        <? if(isset($_GET['excluir']) AND $_GET['excluir']){
+
+            $mysql->prepare = array($_GET['excluir']);
+            $mysql->filtro = " WHERE ".STATUS." AND id = ? AND cadastro = '".$_SESSION['x_site']->id."' ";
+            $mysql->delete('doacoes');
+
+            location(DIR.'/minha_conta/meus_sonhos/');
+            exit();
+        // EXCLUR ITENS
+
+
+
+    } elseif(isset($_POST['gravar'])){
+
+        if(isset($_POST['preco']))  $_POST['preco'] = preco_X($_POST['preco']);
+
+        unset($mysql->campo);
+        $mysql->campo['cadastro'] = $_SESSION['x_site']->id;
+        $mysql->campo['nome'] = $_POST['nome'];
+        $mysql->campo['preco'] = $_POST['preco'];
+        $mysql->campo['txt'] = $_POST['txt'];
+        $mysql->campo['txt1'] = $_POST['txt1'];
+
+        if(isset($_GET['idd'])){
+            $mysql->prepare = array($_GET['idd']);
+            $mysql->filtro = " WHERE `id` = ? AND cadastro = '".$_SESSION['x_site']->id."' ";
+            $ult_id = $mysql->update('doacoes');
+
+        } else {
+            $ult_id = $mysql->insert('doacoes');
+        }
+
+		// FOTOS
+			$upload = new Upload();
+			if(isset($_FILES)){
+	            if(isset($_FILES)) $upload->fileUpload($ult_id, '../../../', 0, 0, 'doacoes');
+			}
+		// FOTOS
+
+		location(DIR.'/minha_conta/meus_sonhos/');
+		exit();
+
+
+
+
+    } elseif($_GET['id'] == 'criar_um_sonho'){
+            if(isset($_GET['idd'])){
+                $mysql->prepare = array($_GET['idd']);
+                $mysql->filtro = " WHERE ".STATUS." AND id = ? ORDER BY ".ORDER." ";
+                $item = $mysql->read_unico('doacoes');
+            }
+        ?>
+            <form method="post" action="" enctype="multipart/form-data">
+
+                <div class="wr6 p10 mb10">
+                    <div class="fz16 fwb">Nome</div>
+                    <div class="pt5">
+                        <input type="text" name="nome" class="design w100p" value="<?=isset($item->nome) ? $item->nome : ''?>" placeholder="Digite aqui" required>
+                    </div>
+                </div>
+                <div class="wr6 p10 mb10">
+                    <div class="fz16 fwb">Valor Objetivo*</div>
+                    <div class="pt5">
+                        <input type="search" name="preco" class="preco_X design w100p" value="<?=isset($item->preco) ? $item->preco : ''?>" placeholder="Digite aqui" required>
+                    </div>
+                </div>
+                <div class="clear"></div>
+
+
+                <div class="wr6 p10 mb10">
+                    <div class="fz16 fwb">Foto Principal <?=(isset($item->foto) AND $item->foto) ? '<a href="'.DIR.'/web/fotos/'.$item->foto.'" class="fz12 c_azul link" target="_blank">Ver Foto</a>' : ''?></div>
+                    <div class="pt5">
+                        <input type="file" name="foto">
+                    </div>
+                </div>
+                <div class="wr6 p10 mb10">
+                    <div class="fz16 fwb">Foto Interna <?=(isset($item->foto1) AND $item->foto1) ? '<a href="'.DIR.'/web/fotos/'.$item->foto1.'" class="fz12 c_azul link" target="_blank">Ver Foto</a>' : ''?></div>
+                    <div class="pt5">
+                        <input type="file" name="foto1">
+                    </div>
+                </div>
+                <div class="clear"></div>
+
+
+                <div class="p10 mb10">
+                    <div class="fz16 fwb">Descrição Curta</div>
+                    <div class="pt5">
+                        <textarea name="txt" class="design w100p h150"><?=isset($item->txt) ? $item->txt : ''?></textarea>
+                    </div>
+                </div>
+                <div class="clear"></div>
+
+
+                <div class="p10 mb10">
+                    <div class="fz16 fwb">Descrição Completa</div>
+                    <div class="pt5">
+                        <textarea name="txt1" class="design w100p h150"><?=isset($item->txt1) ? $item->txt1 : ''?></textarea>
+                    </div>
+                </div>
+                <div class="clear"></div>
+
+
+                <div class="tar">
+                    <div class=""><button class="dib p10 pl60 pr60 fz20 fwb cor_fff bd0 back_<?=COR1?> br20">Cadastrar</button></div>
+                </div>
+
+                <? if(isset($_GET['nome'])){ ?>
+                    <? $url = $_GET['nome'] ?>
+                    <? $url .= $_GET['id']!='-' ? '/'.$_GET['id'] : ($_GET['categorias']!='-' ? '/-' : ''); ?>
+                    <? $url .= $_GET['categorias']!='-' ? '/'.$_GET['categorias'] : ''; ?>
+                    <input type="hidden" name="direcionar" value="<?=$url?>" />
+                <? } ?>
+
+                <input type="hidden" name="gravar" value="1">
+            </form>
+            <div class="clear"></div>
+
+        <?
+
+
+
+
+
+
+
+
+
+
+
+
+        // ITENS
+        } else {
+            ?>
+            <div class="">
+                <div class="pb20 ">
+                    <a href="<?=DIR?>/minha_conta/meus_sonhos/criar_um_sonho" class="dib p10 pl60 pr60 fz20 fwb cor_fff bd0 back_<?=COR1?> br20">Criar um sonho</a>
+                </div>
+
+                <? foreach ($consulta as $key => $value) { ?>
+
+                    <div class="pb40">
+                        <? /*
+                        <div class="wr5">
+                            <? $img->tags = ' class="db max-w100p m-a brl20" '; ?>
+                            <?=$img->img($value)?>
+                        </div>
+                        <div class="wr7 p20 bdl_EBEBEB brr20 bs1">
+                        */ ?>
+                        <div class="p20 br10 bs1">
+                            <div class="pt20 fz20 fwb limit"><?=$value->nome?></div>
+                            <div class="pt10">
+								<a href="<?=DIR?>/web/fotos/<?=$value->foto?>" class="fz12 c_azul link" target="_blank"><?=$img->img($value, 50, 50)?></a>
+								<? $img->foto = 'foto1'?>
+								<a href="<?=DIR?>/web/fotos/<?=$value->foto1?>" class="fz12 c_azul link" target="_blank"><?=$img->img($value, 50, 50)?></a>
+							</div>
+                            <div class="pt10 h58 fz16 lh24 o-h"><?=$value->txt?></div>
+                            <div class="pt20">
+                                <div class="wr6"><b>Data:</b> <?=data($value->data)?></div>
+                                <div class="wr6"><b>ID:</b> <?=$value->id?></div>
+                                <div class="h20 clear"></div>
+                                <div class="wr6">
+                                    <b>Status:</b>
+                                    <?
+                                        if($value->situacao == 0){
+                                            echo '<b class="c_verde">Ativo</b>';
+                                        } elseif($value->situacao == 1){
+                                            echo '<b class="c_vermelho">Encerrado</b>';
+                                        }
+                                    ?>
+                                </div>
+                                <div class="wr6 tar">
+                                    <div class="dib vam"><a href="<?=DIR?>/minha_conta/meus_sonhos/criar_um_sonho?idd=<?=$value->id?>" class="cor_<?=COR1?>"><i class="faa-edit"></i> Gerenciar</i></a></div>
+                                    <div class="dib pl20 vam"><a onclick="deletee('<?=DIR?>/minha_conta/meus_sonhos/?excluir=<?=$value->id?>')" class="c_vermelho"><i class="faa-times"></i> Excluir</i></a></div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <? $porc = doacoes_feitas_porc($value); ?>
+                            <div class="pt10">
+                                <div class="w<?=$porc?>p pb5 ml5 fz16 fwb tar cor_<?=COR1?>"><?=$porc?>%</div>
+                                <div class="posr">
+                                    <div class="posa w<?=$porc?>p h20 bd_ccc back_fff br10 bs1"></div>
+                                    <div class="h20 br10 bs1" style="<?=degrade('140deg, #DE9447 0%, #D8C292 90%')?>"></div>
+                                </div>
+                            </div>
+                            <div class="pt15">
+                                <div class="wr6">Doações: <b><?=doacoes_feitas($value)?></b></div>
+                                <div class="wr6 tar">Objetivo: <b><?=preco($value->preco, 1)?></b></div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+
+                    </div>
+                <? } ?>
+            </div>
+
+            <div class=""><?=$pagg?></div>
+
+
+        <? } ?>
+        <!-- ITENS -->
+
+    </div>
+

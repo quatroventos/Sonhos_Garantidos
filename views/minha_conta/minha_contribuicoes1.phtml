@@ -1,0 +1,33 @@
+
+    <div>
+
+        <div class="">
+            <? foreach ($consulta as $key => $value) { ?>
+
+                <div class="pb40">
+                    <div class="p20 br10 bs1">
+                        <div class="pt20 fz20 fwb limit"><?=$value->nome?></div>
+                        <div class="pt10 h58 fz16 lh24 o-h"><?=$value->txt?></div>
+                        <div class="pt20">
+                            <div class="wr6"><b>ID:</b> <?=$value->id?></div>
+                            <div class="wr6"><b>Doação feita:</b> <?=preco($value->preco)?></div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="pt10">
+                            <div class="w30p pb5 ml5 fz16 fwb tar cor_<?=COR1?>">30%</div>
+                            <div class="posr">
+                                <div class="posa w30p h20 bd_ccc back_fff br10 bs1"></div>
+                                <div class="h20 br10 bs1" style="<?=degrade('140deg, #DE9447 0%, #D8C292 90%')?>"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+
+                </div>
+            <? } ?>
+        </div>
+
+        <div class=""><?=$pagg?></div>
+
+    </div>
+

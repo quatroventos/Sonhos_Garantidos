@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//PT" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
+	<head>
+		<?=META?>
+		<?=ir()?>
+
+		<style>
+	        :root { --COR1: #<?=COR1?>; }
+	        :root { --COR2: #<?=COR2?>; }
+
+			@font-face {
+			    font-family: 'FontAwesome';
+			    src: url('<?=DIR?>/plugins/Fonts/Fonts_Faa/fontawesome/webfont.eot?v=4.7.0');
+			    src: url('<?=DIR?>/plugins/Fonts/Fonts_Faa/fontawesome/webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'),
+			         url('<?=DIR?>/plugins/Fonts/Fonts_Faa/fontawesome/webfont.woff2?v=4.7.0') format('woff2'),
+			         url('<?=DIR?>/plugins/Fonts/Fonts_Faa/fontawesome/webfont.woff?v=4.7.0') format('woff'),
+			         url('<?=DIR?>/plugins/Fonts/Fonts_Faa/fontawesome/webfont.ttf?v=4.7.0') format('truetype'),
+			         url('<?=DIR?>/plugins/Fonts/Fonts_Faa/fontawesome/webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
+			    font-weight: normal;
+			    font-style: normal
+			}
+		</style>
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+			.FONT_Poppins { font-family: 'Poppins', serif; }
+		</style>
+
+	</head>
+
+	<?
+		$input = new Input();
+		$img = new Imagem();
+		$mysql = new Mysql();
+	?>
+
+	<body class="w100p FONT_Poppins">
+		<!-- LOADING -->
+			<div class="LOADING_INI z91" style="position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; background: rgb(255, 255, 255);">
+			    <div style="position: fixed; top: 50%; left: 50%; z-index: -1; padding: 10px; margin: -110px 0 0 -110px; font-size: 0;">
+			        <div class="lds-css ng-scope"><div style="width:100%;height:100%" class="lds-eclipse"><div></div></div></div>
+			    </div>
+			</div>
+			<script>
+				$(document).ready(function() {
+				//document.addEventListener('DOMContentLoaded', () => {
+					setTimeout(function(){ $('.LOADING_INI').hide(); }, 100);
+				})
+				setTimeout(function(){ $('.LOADING_INI').hide(); }, 5000);
+			</script>
+		<!-- LOADING -->
+
+		<? /*<!-- ABA_PARADA (Voce esta ae???) -->
+			<div class="ABA_PARADA dn">
+				<div class="fundoo" style="display: block;"></div>
+				<div class="posf t50p l50p z9 mt-71 ml-142">
+					<div class="p30 m-a fz16 tac bd_ccc back_fff br5">
+						<div class="fz20 fwb ttu">Você ainda está aí?</div>
+						<div class="pt20">
+							<button onclick="aba_ativa()" class="design fz18 ttu cor_fff bd0 back_<?=COR1?> br0 hoverr-op6">Sim</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		<!-- ABA_PARADA --> */ ?>
+
+		<!-- SITE -->
+			<div class="TUDOO pg_<?=$pg?>" onclick="click_body();">
+				<? if($pg!='mobile' AND $_GET['pg']!='imprimir_pedido') include 'z_top.phtml'; ?>
+
+				<article class="PRINCIPALL">
+					<? include $pg.'.phtml'; ?>
+					<div class="clear"></div>
+				</article>
+
+				<? if($pg!='mobile' AND $_GET['pg']!='imprimir_pedido') include 'z_footer.phtml'; ?>
+
+				<?=browser()=='firefox' ? '<style>.editor ul{margin-left: 40px;}</style>' : ''?>
+			</div>
+		<!-- SITE -->
+
+    	<?//=less('', 'js')?>
+	    <script>
+			var wow = new WOW({
+	        	boxClass: 'wow',
+				animateClass: 'animated',
+				offset: 0,
+				mobile: false,
+				live: true
+			});
+			$(window).imagesLoaded(function () { wow.init(); });
+	    </script>
+
+	</body>
+</html>

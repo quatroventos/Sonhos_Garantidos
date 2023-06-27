@@ -1,0 +1,100 @@
+
+	<section id="textos">
+
+		<div class="">
+			<? $img->tags = ' class="db m-a" ' ?>
+			<?=$img->img($item)?>
+		</div>
+
+
+		<div class="pt60 pb60">
+			<div class="centerr">
+				<div class="fz45 fwb7"><?=$item->nome?></div>
+				<div class="pt20 fz16 lh24"><?=txt($item)?></div>
+			</div>
+		</div>
+
+
+		<? if($item->id == 4){ ?>
+
+			<div class="pt60 pb60">
+				<div class="centerr">
+					<div class="wr6">
+						<div class="fz45 fwb7" style="line-height: 60px;"><div class="">Objetivo da</div><div class="">empresa</div></div>
+						<div class="pt20 fz16 lh24"><?=$item->objetivos?></div>
+						<div class="pt40">
+							<div class="posa"><img src="<?=DIR?>/web/img/02.png" class="max-w70"></div>
+							<div class="pl90">
+								<div class="fz20 fwb7">Missão</div>
+								<div class="pt5 fz14 lh20"><?=$item->missao?></div>
+							</div>
+						</div>
+						<div class="pt40">
+							<div class="posa"><img src="<?=DIR?>/web/img/03.png" class="max-w70"></div>
+							<div class="pl90">
+								<div class="fz20 fwb7">Visão</div>
+								<div class="pt5 fz14 lh20"><?=$item->visao?></div>
+							</div>
+						</div>
+						<div class="pt40">
+							<div class="posa"><img src="<?=DIR?>/web/img/04.png" class="max-w70"></div>
+							<div class="pl90">
+								<div class="fz20 fwb7">Valores</div>
+								<div class="pt5 fz14 lh20"><?=$item->valores?></div>
+							</div>
+						</div>
+					</div>
+					<div class="wr6">
+						<div class="wr6 p10">
+							<div class="h100"></div>
+							<div class="h20"></div>
+							<? $img->foto = 'foto1'; ?>
+							<? $img->tags = ' class="br10" '; ?>
+							<?=$img->img($item, 270, 420)?>
+						</div>
+						<div class="wr6 p10">
+							<? $img->foto = 'foto2'; ?>
+							<? $img->tags = ' class="br10" '; ?>
+							<?=$img->img($item, 270, 420)?>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+
+			<div class="pb60">
+				<div class="centerr">
+					<div class="fz45 fwb7" style="line-height: 60px;">Nossa Equipe</div>
+					<div class="pt20 fz16 lh24"><?=$item->nossa_equipe?></div>
+
+					<div class="pt40">
+						<div class="Plugin1 no_pagg po-h Plugin_grande1" itens="3" auto="30">
+							<? foreach ($equipe as $key => $value) { ?>
+								<div class="p15">
+								    <div class="">
+								        <div class="">
+								            <? $img->tags = ' class="db max-w100p m-a brt20" '; ?>
+								            <?=$img->img($value, 400, 370)?>
+								        </div>
+								        <div class="p20 brb20 bs1">
+								            <div class="fz20 fwb limit"><?=$value->nome?></div>
+								            <div class="pt10 fz14 lh24"><?=$value->txt?></div>
+					                        <ul class="pt10 tac fz24 fwb">
+				                                <?=$value->instagram ? '<li class="dib vam hh rubberBand"><a href="'.http($value->instagram).'" class="pl10 pr10 cor_'.COR1.' br50p" target="_blank"><i class="faa-instagram"></i></a></li>' : ''?>
+				                                <?=$value->facebook ? '<li class="dib vam hh rubberBand"><a href="'.http($value->facebook).'" class="pl10 pr10 cor_'.COR1.' br50p" target="_blank"><i class="faa-facebook"></i></a></li>' : ''?>
+				                                <?=$value->linkedin ? '<li class="dib vam hh rubberBand"><a href="'.http($value->linkedin).'" class="pl10 pr10 cor_'.COR1.' br50p" target="_blank"><i class="faa-linkedin"></i></a></li>' : ''?>
+					                        </ul>
+								        </div>
+								    </div>
+								</div>
+							<? } ?>
+						</div>
+					</div>
+			        <div class="clear"></div>
+				</div>
+			</div>
+
+		<? } ?>
+
+	</section>

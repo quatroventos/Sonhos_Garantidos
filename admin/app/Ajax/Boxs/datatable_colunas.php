@@ -1,0 +1,197 @@
+<?
+
+	$DIR_F = explode(DIRECTORY_SEPARATOR.'admin'.DIRECTORY_SEPARATOR, __DIR__.DIRECTORY_SEPARATOR);
+	require_once $DIR_F[0].'/system/conecta.php';
+	require_once DIR_F.'/app/Funcoes/funcoesAdmin.php';
+
+	$mysql = new Mysql();
+	$mysql->ini();
+
+	$input = new Input();
+
+	$arr = array();
+	$arr['html'] = '';
+
+
+	if(isset($_SESSION['x_admin']->id) AND $_SESSION['x_admin']->id){
+
+
+		if(isset($_POST['gravar']) AND $_POST['gravar'] AND LUGAR == 'admin' AND isset($_SESSION['x_admin']->id) AND $_SESSION['x_admin']->id){
+			$arr['alert'] = 1;
+
+			$mysql->prepare = array($_SESSION['x_admin']->id);
+			$mysql->filtro = " WHERE `id` = ? ";
+			$mysql->campo['itens_pagina'] = $_POST['itens_pagina'];
+			$mysql->update('usuarios');		
+
+
+
+
+		} elseif(LUGAR == 'admin') {
+			$mysql->prepare = array($_POST['id']);
+			$mysql->filtro = " WHERE `id` = ? ";
+			$modulos = $mysql->read_unico('menu_admin');
+
+			$verificacoes = new Verificacoes();
+			$verificacoes->modulos = $modulos;
+			$verificacoes->permissoes_all(0, 'lista');
+
+			// Colunas Gravadas em Usuarios_config
+			$mysql->prepare = array($modulos->id, $_SESSION['x_admin']->id);
+			$mysql->filtro = " WHERE `modulos` = ? AND `usuarios` = ? ";
+			$usuarios_config = $mysql->read_unico('usuarios_config');
+			if(!isset($usuarios_config->modulos)){
+				$x=0;
+				$colunas = array();
+				foreach (unserialize(base64_decode($modulos->colunas)) as $key => $value) { $x++;
+					if(isset($value['check']) AND $value['check']){
+						$colunas[$x] = 'coluna_'.$key;
+					}
+				}
+				$mysql->campo['colunas'] = base64_encode(serialize($colunas));
+				$mysql->campo['modulos'] = $modulos->id;
+				$mysql->campo['usuarios'] = $_SESSION['x_admin']->id;
+				$mysql->insert('usuarios_config');
+
+				$mysql->prepare = array($modulos->id, $_SESSION['x_admin']->id);
+				$mysql->filtro = " WHERE `modulos` = ? AND `usuarios` = ? ";
+				$usuarios_config = $mysql->read_unico('usuarios_config');
+			}
+			$usuarios_config_colunas = unserialize(base64_decode($usuarios_config->colunas));
+			// Colunas Gravadas em Usuarios_config
+
+			// Excluindo campos q ja existem em colunas
+			$colunas_menu_admin = array();
+			foreach (unserialize(base64_decode($modulos->colunas)) as $key => $value) {
+				if(isset($value['check']) AND $value['check']){
+					$ex = explode('->', $value['value']);
+					$colunas_menu_admin[] = $ex[0];
+				}
+			}
+			// Excluindo campos q ja existem em colunas
+
+
+			// Pegando dados as colunas para formar o html
+				$boxxs = array(1=>'', 2=>'');
+
+				// Colunas
+				foreach (unserialize(base64_decode($modulos->colunas)) as $key => $value) {
+					if(isset($value['check']) AND $value['check'] AND $value['nome']){
+						// Foto
+							$foto = 0;
+							if($value['value'] == 'foto'){
+								foreach (unserialize(base64_decode($modulos->campos)) as $ke => $val) {
+									foreach ($val as $k => $v) {
+										if(isset($v['check']) AND $v['check'] AND  $v['input']['nome'] == 'foto')
+										$foto = 1;
+									}
+								}
+							} else $foto = 1;
+
+						// Categorias
+							$categorias = 0;
+							if($value['value'] == 'relacionamento_categoria_automatico'){
+								if(preg_match('(-categorias-)', $modulos->informacoes) OR preg_match('(-varias_categorias-)', $modulos->informacoes) OR preg_match('(-subcategorias-)', $modulos->informacoes) )
+										$categorias = 1;
+							} else $categorias = 1;
+
+						if($foto AND $categorias){
+							$value['nome'] = $value['nome']=='NOME DA CATEGORIA' ? 'Categorias' : $value['nome'];
+							$ex = explode('->', $value['nome']);
+							$temp  = '<li class="wr3" dir="coluna_'.$key.'"> ';
+								$temp .= '<span class="limit"> ';
+									$temp .= $ex[0];
+								$temp .= '</span> ';
+							$temp .= '</li> ';
+							if(in_array('coluna_'.$key, $usuarios_config_colunas)){
+								$n = 0;
+								foreach ($usuarios_config_colunas as $k1 => $v1) {
+									if($v1 == 'coluna_'.$key)
+										$n = $k1;
+								}
+								$boxxs[1][$n] = $temp;
+							} else {
+								$boxxs[2] .= $temp;
+							}
+						}
+					}
+				}
+
+				// Campos
+				foreach (unserialize(base64_decode($modulos->campos)) as $k => $v) {
+					foreach ($v as $key => $value) {
+						if(isset($value['check']) AND $value['check'] AND $value['nome'] AND !preg_match('(categorias)', $value['input']['opcoes']) AND !preg_match('(_hidden)', $value['input']['nome']) AND !preg_match('(inserir_box)', $value['input']['nome']) AND !preg_match('(multifotos)', $value['input']['nome']) AND $value['input']['tipo'] != 'hidden' AND $value['input']['tipo'] != 'textarea' AND $value['input']['tipo'] != 'button' AND $value['input']['tipo'] != 'editor' AND $value['input']['tipo'] != 'file_editor' ){
+							if(!in_array($value['input']['nome'], $colunas_menu_admin)){
+								$temp  = '<li class="wr3" dir="campo_'.$k.'_'.$key.'"> ';
+									$temp .= '<span class="limit"> ';
+										$temp .= $value['nome'];
+									$temp .= '</span> ';
+								$temp .= '</li> ';
+								if(in_array('campo_'.$k.'_'.$key, $usuarios_config_colunas)){
+									$n = 0;
+									foreach ($usuarios_config_colunas as $k1 => $v1) {
+										if($v1 == 'campo_'.$k.'_'.$key)
+											$n = $k1;
+									}
+									$boxxs[1][$n] = $temp;
+								} else {
+									$boxxs[2] .= $temp;
+								}
+							}
+						}
+					}
+				}
+			// Pegando dados as colunas para formar o html
+
+
+
+			// Ordenando cols no boxxs 1
+				ksort($boxxs[1]);
+				$boxxs_1 = '';
+				foreach ($boxxs[1] as $key => $value) {
+					$boxxs_1 .= $value;
+				}
+
+
+
+			$arr['title'] = 'Configurações';
+
+			$arr['html']  = '<div class="max-w900 linha mb10">
+								<div class="p20 pt15">
+									<b class="db mb5">Quais colunas irão aparecer para este módulo:</b>
+									<ul class="boxxs">
+										<li class="w100p">
+											<div class="colunas">
+												<ul class="sortable boxxs_verde" boxxs="1">
+													'.$boxxs_1.'
+													<div class="clear"></div>
+												</ul> 
+												<hr>
+												<ul class="sortable boxxs_amarelo">
+													'.$boxxs[2].'
+													<div class="clear"></div>
+												</ul>
+												<hr>
+											</div>
+										</li>
+									</ul>
+									<div class="clear"></div>
+								</div>
+								<button class="botao flr" onclick="views('.A.$modulos->id.A.', '.A.$modulos->tipo_modulo.A.', '.A.$modulos->gets.A.');"> <i class="mr2 faa-check c_verde"></i> Atualizar</button>
+								<button type="button" class="botao" onclick="datatable_colunas_delete('.A.$modulos->id.A.');'.VIEWS.'('.A.$modulos->id.A.', '.A.$modulos->tipo_modulo.A.', '.A.$modulos->gets.A.');"> <i class="mr2 faa-check-circle c_verde"></i> Resetar</button>
+							</div>
+							<script>boxxs('.A.'datatable_colunas_gravar("'.$modulos->id.'")'.A.');</script> ';
+
+		} else {
+			$verificacoes = new Verificacoes();
+			$arr['violacao_de_regras'] = 1;
+			$verificacoes->violacao_de_regras($arr)
+		}
+
+	}
+
+
+	$mysql->fim();
+	echo json_encode($arr); 
+
+?>

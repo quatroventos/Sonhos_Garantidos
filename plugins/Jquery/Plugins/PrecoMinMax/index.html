@@ -1,0 +1,113 @@
+
+
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+
+    <script type="text/javascript" src="../../jquery-1.11.3.min.js"></script>	
+    <script type="text/javascript" src="js/jquery.slider.js"></script>
+
+
+    <div style="padding-bottom: 50px">
+        <input id="Slider1" type="slider" name="price" value="30000.5;60000" />
+    </div>
+    <script type="text/javascript" charset="utf-8">
+        jQuery("#Slider1").slider({
+            from: 1000,
+            to: 100000,
+            step: 500,
+            round: 0,
+            dimension: "&nbsp;$",
+            skin: "plastic",
+            smooth: true,
+        });
+    </script>
+
+
+    <div style="padding-bottom: 50px">
+        <input id="SliderSingle" type="slider" name="price" value="20" />
+    </div>
+    <script type="text/javascript" charset="utf-8">
+        jQuery("#SliderSingle").slider({
+            from: 5,
+            to: 50,
+            step: 2.5,
+            round: 1,
+            dimension: '&nbsp;m<small>2</small>',
+            skin: "round_plastic",
+            format: {
+                format: '##.0',
+                locale: 'de'
+            },
+        });
+    </script>
+
+
+    <div style="padding-bottom: 50px">
+        <input id="Slider2" type="slider" name="price" value="5000;50000" />
+    </div>
+    <script type="text/javascript" charset="utf-8">
+        jQuery("#Slider2").slider({
+            from: 0, // Inicio
+            to: 100000, // Fim
+            step: 1000, // Passadas
+            //heterogeneity: ['50/50000'], // Ponto inicial e final
+            scale: [0, '|', 3000, '|', '5000', '|', 50000, '|', 80000],
+            dimension: '&nbsp;R$',
+            skin: "round",
+        });
+    </script>
+
+
+    <div style="padding-bottom: 50px">
+        <input id="Slider3" type="slider" name="area" value="25;75" />
+    </div>
+    <script type="text/javascript" charset="utf-8">
+        jQuery("#Slider3").slider({
+            from: 0,
+            to: 500,
+            dimension: '&nbsp;€',
+            skin: "round",
+            heterogeneity: ['50/100', '75/250'],
+            scale: [0, '|', 50, '|', '100', '|', 250, '|', 500],
+            limits: false,
+            step: 1,
+        });
+    </script>
+
+
+    <div style="padding-bottom: 50px">
+        <input id="Slider4" type="slider" name="area" value="2;10" />
+    </div>
+    <script type="text/javascript" charset="utf-8">
+        jQuery("#Slider4").slider({
+            from: 1,
+            to: 30,
+            dimension: '',
+            skin: "blue",
+            heterogeneity: ['50/5', '75/15'],
+            scale: [1, '|', 3, '|', '5', '|', 15, '|', 30],
+            limits: false,
+            step: 1,
+            callback: function( value ){
+                console.dir( this );
+            }
+        });
+    </script>
+
+
+    <div style="padding-bottom: 50px">
+        <input id="Slider5" type="slider" name="area" value="600;720" />
+    </div>
+    <script type="text/javascript" charset="utf-8">
+        jQuery("#Slider5").slider({
+            from: 480,
+            to: 1020,
+            step: 15,
+            dimension: '',
+            scale: ['8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+            limits: false,
+            calculate: function( value ){
+                var hours = Math.floor( value / 60 );
+                var mins = ( value - hours*60 );
+                return (hours < 10 ? "0"+hours : hours) + ":" + ( mins == 0 ? "00" : mins );
+        }})
+    </script>

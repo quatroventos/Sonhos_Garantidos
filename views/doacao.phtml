@@ -1,0 +1,115 @@
+
+	<section id="doacao">
+
+		<? $porc = doacoes_feitas_porc($item); ?>
+
+		<? $img->foto = 'foto1'; ?>
+		<div class="" style="background: url(<?=$img->img($item, 0, 0, 1)?>) center">
+			<div class="centerr">
+				<div class="h100"></div>
+				<div class="h100"></div>
+				<div class="h50"></div>
+				<div class="cor_fff">
+					<div class="pt20 fz40 fwb"><?=$item->nome?></div>
+		            <div class="pt10 fz20 fwb">ID: <?=$item->id?></div>
+		            <div class="pt30">
+		            	<div class="fll">
+		            		<a onclick="copyy('input.coppy')" class="dib fz20 vam cor_fff">
+		            			<div class="dib vam">Copiar Link</div>
+		            			<div class="dib vam"><i class="faa-copy"></i></div>
+		            		</a>
+		            		<a class="dni dib ml20 fz20 vam cor_fff"><i class="faa-facebook"></i></a>
+		            		<input type="text" class="w10 op0 coppy" value="<?=DIR_ALL?>">
+		            	</div>
+		            	<div class="flr">
+		            		<a href="<?=url('doacao_pagamento', $item)?>" class="dib p10 pl60 pr60 fz20 fwb cor_fff back_<?=COR1?> br20">Doar</a>
+		            	</div>
+		            	<div class="clear"></div>
+		            </div>
+		            <div class="pt30">
+			            <div class="w<?=$porc?>p pb10 ml20 fz20 fwb tar cor_<?=COR1?>"><?=$porc?>%</div>
+			            <div class="posr">
+			                <div class="posa w<?=$porc?>p h20 bd_ccc back_fff br10 bs1"></div>
+			                <div class="h20 br10 bs1" style="<?=degrade('140deg, #DE9447 0%, #D8C292 90%')?>"></div>
+			            </div>
+		            </div>
+		            <div class="pt20 fz18 cor_fff">
+		                <div class="wr6">Doações: <b><?=doacoes_feitas($item)?></b></div>
+		                <div class="wr6 tar">Objetico: <b><?=preco($item->preco, 1)?></b></div>
+		                <div class="clear"></div>
+		            </div>
+				</div>
+				<div class="h80"></div>
+			</div>
+		</div>
+
+
+		<div class="pt60 pb60">
+			<div class="centerr">
+				<div class="pt20 bd_ccc br10 bs1">
+					<div class="fz20 tac flexx flex_c flex_ac">
+						<div onclick="txt_(0)" class="txt__ txt__0 p10 c-p flex_1 bdb_ccc ativo">Sobre</div>
+						<div onclick="txt_(1)" class="txt__ txt__1 p10 c-p flex_1 bdb_ccc">Quem Ajudou</div>
+					</div>
+					<div class="p40 fz16 lh24">
+						<div class="txt_ txt_0"><?=$item->txt1?></div>
+						<div class="dn txt_ txt_1">
+							<?
+				    	        $mysql->filtro = " WHERE ".STATUS." AND `doacoes` = '".$item->id."' ";
+					            $doacoes_pagamentos = $mysql->read('doacoes_pagamentos');
+					        ?>
+				            <table class="w100p">
+				                <tr>
+				                    <td class="p10 fz12 lh14 bdt_eee bdb_eee bdl_eee">
+				                        <div class="fwb">Nome</div>
+				                    </td>
+				                    <td class="p10 fz12 tac bdt_eee bdb_eee bdl_eee">
+				                        <div class="fwb">Valor</div>
+				                    </td>
+				                    <td class="p10 fz12 tac bdt_eee bdb_eee bdl_eee">
+				                        <div class="fwb">Status</div>
+				                    </td>
+				                </tr>
+				                <? foreach ($doacoes_pagamentos as $key => $value) { ?>
+				                    <tr>
+				                        <td class="p10 fz12 lh14 bdt_eee bdb_eee bdl_eee">
+				                            <div class="pt5"><?=rel('cadastro', $value->cadastro)?></div>
+				                        </td>
+				                        <td class="p10 fz12 lh14 tac bdt_eee bdb_eee bdl_eee">
+				                            <div class="pt5"><?=preco($value->preco, 1)?></div>
+				                        </td>
+				                        <td class="p10 fz12 lh14 tac bdt_eee bdb_eee bdl_eee bdr_eee">
+				                            <div class="pt5"><?=doacoes_situacao($value->situacao)?></div>
+				                        </td>
+				                    </tr>
+				                <? } ?>
+				                <? if(!$doacoes_pagamentos){ ?>
+				                    <tr>
+				                        <td colspan="5" class="p10 fz12 lh14 tac bdt_eee bdb_eee bdl_eee">
+				                        	<div class="">Nenhuma doação encontrada...</div>
+				                        </td>
+				                    </tr>
+				                <? } ?>
+				            </table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<style>
+			#doacao .ativo { font-weight: bold; border-bottom: 1px solid #<?=COR1?>; }
+		</style>
+		<script>
+			function txt_($x){
+				$('.txt_').hide();
+				$('.txt_'+$x).show();
+				$('.txt__').removeClass('ativo')
+				$('.txt__'+$x).addClass('ativo')
+			}
+		</script>
+
+
+
+	</section>

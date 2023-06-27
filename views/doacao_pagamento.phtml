@@ -1,0 +1,112 @@
+
+	<section id="doacao_pagamento">
+
+        <div class="">
+            <img src="<?=DIR?>/web/img/05.jpg" class="db m-a">
+        </div>
+
+
+		<div class="w600 max-w100p m-a pt40 pb40 pagamentoo">
+			<div class="pb40 tac">
+				<div class="pb25 fz26 fwb">Digite o valor que deseja doar:</div>
+				<div class=""><input type="number" name="preco" class="precoo pb5 fz30i tac bd0 bdw2 bdb_ccc" value="100" min="10" autocomplete="off"></div>
+
+				<div class="pt20 tac">
+					<button onclick="$('.precoo').val(25).trigger('keyup')" class="botao dib ml5 mr5 vam br5">R$ 25</button>
+					<button onclick="$('.precoo').val(50).trigger('keyup')" class="botao dib ml5 mr5 vam br5">R$ 50</button>
+					<button onclick="$('.precoo').val(75).trigger('keyup')" class="botao dib ml5 mr5 vam br5">R$ 75</button>
+					<button onclick="$('.precoo').val(100).trigger('keyup')" class="botao dib ml5 mr5 vam br5">R$ 100</button>
+				</div>
+			</div>
+
+			<div class="bd_eee">
+				<div class="flexx">
+					<div class="flex_1 pt15 pb15 tac c-p bdr_eee pagamentoo_ ativo" dir="cartao">
+						<div class="dib pl5 pr5">
+							<svg class="w45 h45 fll" xmlns="http://www.w3.org/2000/svg" width="46.724" height="31.15" viewBox="0 0 46.724 31.15"><defs></defs><g transform="translate(-0.001)"><g transform="translate(0.001 0)"><g transform="translate(0 0)"><path fill="currentColor" class="a" d="M41.857,85.333H4.867A4.874,4.874,0,0,0,0,90.2v21.415a4.874,4.874,0,0,0,4.867,4.867h36.99a4.874,4.874,0,0,0,4.867-4.867V90.2A4.874,4.874,0,0,0,41.857,85.333Zm2.92,26.282a2.924,2.924,0,0,1-2.92,2.92H4.867a2.924,2.924,0,0,1-2.92-2.92V90.2a2.924,2.924,0,0,1,2.92-2.92h36.99a2.924,2.924,0,0,1,2.92,2.92v21.415Z" transform="translate(0 -85.333)"/></g></g><g transform="translate(0.001 5.922)"><path fill="currentColor" class="a" d="M45.751,149.333H.973a.954.954,0,0,0-.973.933v5.6a.954.954,0,0,0,.973.933H45.751a.954.954,0,0,0,.973-.933v-5.6A.954.954,0,0,0,45.751,149.333Zm-.973,5.6H1.947V151.2H44.777v3.732Z" transform="translate(0 -149.333)"/></g><g transform="translate(5.599 19.523)"><path fill="currentColor" class="a" d="M76.128,298.667H64.933a.933.933,0,1,0,0,1.866H76.128a.933.933,0,1,0,0-1.866Z" transform="translate(-64 -298.667)"/></g><g transform="translate(5.599 23.427)"><g transform="translate(0 0)"><path fill="currentColor" class="a" d="M76.128,341.333H64.933a.933.933,0,1,0,0,1.866H76.128a.933.933,0,1,0,0-1.866Z" transform="translate(-64 -341.333)"/></g></g><g transform="translate(33.665 17.765)"><g transform="translate(0 0)"><path fill="currentColor" class="a" d="M367.332,277.333h-1.866a2.8,2.8,0,0,0-2.8,2.8V282a2.8,2.8,0,0,0,2.8,2.8h1.866a2.8,2.8,0,0,0,2.8-2.8v-1.866A2.8,2.8,0,0,0,367.332,277.333Zm.933,4.665a.933.933,0,0,1-.933.933h-1.866a.933.933,0,0,1-.933-.933v-1.866a.933.933,0,0,1,.933-.933h1.866a.933.933,0,0,1,.933.933Z" transform="translate(-362.667 -277.333)"/></g></g></g></svg>
+							<div class="pt14 pl55 tal">
+								<div class="fz16 fz12_1000">CARTÃO</div>
+							</div>
+						</div>
+					</div>
+					<div class="flex_1 pt15 pb15 tac c-p bdr_eee pagamentoo_" dir="pix">
+						<div class="dib pl5 pr5">
+							<svg class="w45 h45 fll" version="1.1" id="Camada_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"viewBox="0 0 344 338.7" style="enable-background:new 0 0 344 338.7;" xml:space="preserve"><path fill="currentColor" class="st0" d="M260.1,255.5c-12.3,0-24.1-4.8-32.8-13.5L180,194.6c-3.5-3.3-9-3.3-12.4,0l-47.5,47.5 c-8.7,8.7-20.5,13.6-32.8,13.6H78l60,60c18.7,18.7,49.1,18.7,67.8,0l60.1-60.1L260.1,255.5z"/> <path fill="currentColor" class="st0" d="M87.3,88.1c12.3,0,24.1,4.9,32.8,13.6l47.5,47.5c3.4,3.4,9,3.4,12.4,0l47.3-47.3c8.7-8.7,20.5-13.6,32.8-13.6 h5.7l-60.1-60.1c-18.7-18.7-49.1-18.7-67.8,0c0,0,0,0,0,0L78,88.1H87.3z"/> <path fill="currentColor" class="st0" d="M315.6,138l-36.3-36.3c-0.8,0.3-1.7,0.5-2.6,0.5h-16.5c-8.6,0-16.8,3.4-22.9,9.5L189.9,159 c-8.9,8.9-23.3,8.9-32.1,0l-47.5-47.5c-6.1-6.1-14.3-9.5-22.9-9.5H67c-0.8,0-1.7-0.2-2.4-0.5L28,138c-18.7,18.7-18.7,49.1,0,67.8 l36.5,36.5c0.8-0.3,1.6-0.5,2.4-0.5h20.4c8.6,0,16.8-3.4,22.9-9.5l47.5-47.5c8.6-8.6,23.6-8.6,32.1,0l47.3,47.3 c6.1,6.1,14.3,9.5,22.9,9.5h16.5c0.9,0,1.8,0.2,2.6,0.5l36.3-36.3C334.3,187.1,334.3,156.7,315.6,138C315.6,138,315.6,138,315.6,138 "/> </svg>
+							<div class="pt14 pl55 tal">
+								<div class="fz16 fz12_1000">PIX</div>
+							</div>
+						</div>
+					</div>
+					<div class="flex_1 pt15 pb15 tac c-p pagamentoo_" dir="boleto">
+						<div class="dib pl5 pr5">
+							<svg class="w45 h45 fll" xmlns="http://www.w3.org/2000/svg" width="42.848" height="32.136" viewBox="0 0 42.848 32.136"><defs></defs><path fill="currentColor" class="a" d="M0,96.136V64H1.506V96.136Zm2.248-.023V64h.765V96.113Zm2.272,0V64H5.26V96.113Zm3.754,0V64h.741V96.113Zm3.013,0V64h1.482V96.113Zm3.754,0V64h.741V96.113Zm1.506,0V64h.741V96.113Zm1.506,0V64h.741V96.113Zm2.989,0V64h1.506V96.113Zm3.754,0V64H26.3V96.113Zm3.013,0V64h1.506V96.113Zm3.013,0V64h1.506V96.113Zm2.248,0V64h1.506V96.113Zm3.778,0V64h2.248V96.113Zm2.989,0V64H40.6V96.113h-.765Zm1.506.023V64h1.506V96.136Z" transform="translate(0 -64)"/></svg>
+							<div class="pt14 pl55 tal">
+								<div class="fz16 fz12_1000">BOLETO</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="p20 bdt_eee">
+					<div class="pagamentoo_box_ pagamentoo_box_cartao">
+						<form method="post" action="<?=url('doacao_pagamento_fim', $item)?>">
+							<input type="hidden" name="preco_doacao" />
+							<input type="hidden" name="metodo" value="Pagarme_cartao" />
+							<div class="p10"><input type="text" name="cartao_nome" class="cartao_nome design w100p" placeholder="Nome do Titular do Cartão"></div>
+							<div class="p10"><input type="text" name="cartao_numero" class="cartao_numero design w100p" placeholder="Número do Cartão"></div>
+							<div class="wr6 p10"><input type="text" name="cartao_validade" class="cartao_validade design w100p" placeholder="Validade (MM/YYYY)"></div>
+							<div class="wr6 p10"><input type="text" name="cartao_cvv" class="cartao_cvv design w100p" placeholder="CVV"></div>
+							<div class="clear"></div>
+							<div class="pt20 tac">
+								<button class="PAGAMENTO_CARTAOO design dib p10 pl40 pr40 fz16 <?=BUTTON1?> br0 hover2 hoverr4">Finalizar Compra</button>
+							</div>
+						</form>
+					</div>
+					<div class="pagamentoo_box_ pagamentoo_box_pix dn">
+						<form method="post" action="<?=url('doacao_pagamento_fim', $item)?>">
+							<input type="hidden" name="preco_doacao" />
+							<input type="hidden" name="metodo" value="Pagarme_pix" />
+							<div class="pt40 pb40 fz16 tac">Após finalizar a compra aparecerá a chave do pix e QR code.</div>
+							<div class="pt20 tac">
+								<button class="design dib p10 pl40 pr40 fz16 <?=BUTTON1?> br0 hover2 hoverr4">Finalizar Compra</button>
+							</div>
+						</form>
+					</div>
+					<div class="pagamentoo_box_ pagamentoo_box_boleto dn">
+						<form method="post" action="<?=url('doacao_pagamento_fim', $item)?>">
+							<input type="hidden" name="preco_doacao" />
+							<input type="hidden" name="metodo" value="Pagarme_boleto" />
+							<div class="pt40 pb40 fz16 tac">Após finalizar a compra aparecerá o boleto para pagamento.</div>
+							<div class="pt20 tac">
+								<button class="design dib p10 pl40 pr40 fz16 <?=BUTTON1?> br0 hover2 hoverr4">Finalizar Compra</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<style>
+			.pagamentoo_.ativo { background: #<?=COR1?>; }
+			.pagamentoo_.ativo svg,
+			.pagamentoo_.ativo .fz16,
+			.pagamentoo_.ativo .fz11 { color: #fff !important; }
+		</style>
+		<script>
+			$(document).ready(function() {
+				$(".pagamentoo_").on("click", function() {
+					$(".pagamentoo_").removeClass('ativo');
+					$(this).addClass('ativo');
+					$(".pagamentoo_box_").hide();
+					$(".pagamentoo_box_"+$(this).attr('dir')).show()
+				})
+
+				$('input[name="preco"]').on("keyup", function() {
+					$('input[name="preco_doacao"]').val($(this).val());
+				})
+				setTimeout(function(){
+					$('input[name="preco_doacao"]').val($('input[name="preco"]').val());
+				}, .5);
+			});
+		</script>
+        <div class="h40 clear"></div>
+
+	</section>

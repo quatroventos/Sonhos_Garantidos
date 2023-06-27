@@ -1,0 +1,69 @@
+
+    <div class="">
+        <div class="table_mobile">
+            <table class="w100p fz13">
+                <tr>
+                    <td class="p10 bdt_eee bdb_eee bdl_eee">
+                        <div class="fwb">Sonho</div>
+                    </td>
+                    <td class="p10 tac bdt_eee bdb_eee bdl_eee bdr_eee">
+                        <div class="fwb">Doador</div>
+                    </td>
+                    <td class="dni p10 tac bdt_eee bdb_eee bdl_eee">
+                        <div class="fwb">Email</div>
+                    </td>
+                    <td class="dni p10 tac bdt_eee bdb_eee bdl_eee">
+                        <div class="fwb">CPF</div>
+                    </td>
+                    <td class="p10 tac bdt_eee bdb_eee bdl_eee">
+                        <div class="fwb">Valor Pago</div>
+                    </td>
+                    <td class="p10 tac bdt_eee bdb_eee bdl_eee">
+                        <div class="fwb">Taxa por <br>Doação</div>
+                    </td>
+                    <td class="p10 tac bdt_eee bdb_eee bdl_eee">
+                        <div class="fwb">Taxa da <br>Plataforma</div>
+                    </td>
+                    <td class="p10 tac bdt_eee bdb_eee bdl_eee">
+                        <div class="fwb">Valar <br>Recebido</div>
+                    </td>
+                    <td class="p10 tac bdt_eee bdb_eee bdl_eee bdr_eee">
+                        <div class="fwb">Status</div>
+                    </td>
+                </tr>
+                <? foreach ($consulta as $key => $value) { ?>
+                    <tr>
+                        <td class="p10 bdt_eee bdb_eee bdl_eee">
+                            <div class="pt5"><?=$value->nome?></div>
+                        </td>
+                        <td class="p10 tac bdt_eee bdb_eee bdl_eee bdr_eee">
+                            <div class="pt5"><?=rel('cadastro', $value->cadastro)?></div>
+                        </td>
+                        <td class="dni p10 tac bdt_eee bdb_eee bdl_eee">
+                            <div class="pt5"><?=rel('cadastro', $value->cadastro, 'email')?></div>
+                        </td>
+                        <td class="dni p10 tac bdt_eee bdb_eee bdl_eee">
+                            <div class="pt5"><?=rel('cadastro', $value->cadastro, 'cpf')?></div>
+                        </td>
+                        <td class="p10 tac bdt_eee bdb_eee bdl_eee">
+                            <div class="pt5"><?=preco($value->preco, 1)?></div>
+                        </td>
+                        <td class="p10 tac bdt_eee bdb_eee bdl_eee">
+                            <div class="pt5"><?=preco($value->taxa_doacao, 1)?></div>
+                        </td>
+                        <td class="p10 tac bdt_eee bdb_eee bdl_eee">
+                            <div class="pt5"><?=preco($value->taxa_plataforma, 1)?></div>
+                        </td>
+                        <td class="p10 tac bdt_eee bdb_eee bdl_eee">
+                            <div class="pt5"><?=preco($value->preco - $value->taxa_doacao - $value->taxa_plataforma, 1)?></div>
+                        </td>
+                        <td class="p10 tac bdt_eee bdb_eee bdl_eee bdr_eee">
+                            <div class="pt5"><?=doacoes_situacao($value->situacao)?></div>
+                        </td>
+                    </tr>
+                <? } ?>
+            </table>
+            <div class="pt10"><?=$pagg?></div>
+        </div>
+    </div>
+

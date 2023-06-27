@@ -1,0 +1,69 @@
+
+	<section id="minha_conta">
+
+        <div class="">
+        	<img src="<?=DIR?>/web/img/05.jpg" class="db m-a">
+        </div>
+
+		<div class="pt40 pb60">
+			<div class="centerr">
+
+				<div class="wr3 pr40 p0_700">
+					<div class="h70 dn_700"></div>
+					<ul class="p0 fz20 MINHA_CONTA_MENU">
+						<li class="pt10 pb20 bdb_ccc">
+							<a href="<?=DIR?>/<?=$_GET['pg']?>/dados/" class="<?=$_GET['nome']=='dados' ? 'fwb' : ''?> cor_hover_<?=COR1?>_i">Meus Dados</a>
+						</li>
+						<li class="pt20 pb20 bdb_ccc">
+							<a href="<?=DIR?>/<?=$_GET['pg']?>/meus_sonhos/" class="<?=$_GET['nome']=='meus_sonhos' ? 'fwb' : ''?> cor_hover_<?=COR1?>_i">Meus Sonhos</a>
+						</li>
+						<li class="pt20 pb20 bdb_ccc">
+							<a href="<?=DIR?>/<?=$_GET['pg']?>/minha_contribuicoes/" class="<?=$_GET['nome']=='minha_contribuicoes' ? 'fwb' : ''?> cor_hover_<?=COR1?>_i">Minhas Contribuições</a>
+						</li>
+						<li class="pt20 pb20 bdb_ccc">
+							<a href="<?=DIR?>/<?=$_GET['pg']?>/meus_doadores/" class="<?=$_GET['nome']=='meus_doadores' ? 'fwb' : ''?> cor_hover_<?=COR1?>_i">Meus Doadores</a>
+						</li>
+						<li class="pt20 pb20 bdb_ccc">
+							<a href="<?=DIR?>/<?=$_GET['pg']?>/meu_saldo/" class="<?=$_GET['nome']=='meu_saldo' ? 'fwb' : ''?> cor_hover_<?=COR1?>_i">Meu Saldo</a>
+						</li>
+
+						<li class="pt40 pb20">
+							<a onclick="ajaxNormal('ajaxForm/login.php?sair=1');" class=" design db w100p p10 fz16 tac <?=BUTTON1?> hover2 hoverr4 bs1">Sair</a>
+						</li>
+						<li class="clear"></li>
+					</ul>
+				</div>
+
+				<div class="h20 dnn_700"></div>
+
+				<div class="wr9">
+					<div class="">
+					    <div class="pb30 fz30 tac">
+					    	<div class="MINHA_CONTA_TITULO"></div>
+					    	<script>
+								$(document).ready(function() {
+									$(".MINHA_CONTA_TITULO").html( $(".MINHA_CONTA_MENU li a.fwb").html() );
+								});
+					    	</script>
+						</div>
+
+					    <div class="">
+					        <div class="max-w100p fz16 cor_666 bd_ccc back_fff br10 bs1">
+					        	<div class="p20 ml20 mr20 m0_1000">
+						        	<? if(file_exists(DIR_F.'/views/'.$_GET['pg'].'/'.$_GET['nome'].'.phtml')){ ?>
+										<? include DIR_F.'/views/'.$_GET['pg'].'/'.$_GET['nome'].'.phtml'; ?>
+
+									<? } else { ?>
+										<? include DIR_F.'/views/'.$_GET['pg'].'/dados.phtml'; ?>
+									<? } ?>
+								</div>
+					        </div>
+					    </div>
+					</div>
+				</div>
+				<div class="clear"></div>
+				
+			</div>
+		</div>
+
+	</section>

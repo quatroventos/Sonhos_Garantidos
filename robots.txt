@@ -1,0 +1,7 @@
+Sitemap: 
+
+User-Agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /plugins
+Disallow: /system

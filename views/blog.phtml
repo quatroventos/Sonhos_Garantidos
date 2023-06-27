@@ -1,0 +1,99 @@
+
+	<section id="blog">
+
+		<? if(!isset($item->id)){ ?>
+			<? $img->foto = 'foto_7'; ?>
+			<div class="" style="background: url(<?=$img->img($textos[6], 0, 0, 1)?>) center">
+				<div class="centerr">
+					<div class="h100"></div>
+					<div class="h60"></div>
+					<div class="cor_fff">
+						<div class="pt20 fz40 fwb"><?=$textos[6]->nome_7?></div>
+			            <div class="pt10 fz16 lh24"><?=$textos[6]->txt_7?></div>
+			        </div>
+			        <div class="h60"></div>
+			    </div>
+			</div>
+
+
+			<div class="pt60 pb60">
+				<div class="centerr">
+					<div class="">
+						<? foreach ($blogs as $key => $value) { ?>
+							<div class="wr4 p15 pb60">
+							    <div class="">
+							    	<a href="<?=url('blog', $value)?>">
+								        <div class="">
+								            <? $img->tags = ' class="db max-w100p m-a brt20" '; ?>
+								            <?=$img->img($value)?>
+								        </div>
+								        <div class="p20 bs1">
+								            <div class="h24 fz20 fwb limit"><?=$value->nome?></div>
+								            <div class="pt10 h110 fz14 lh24 o-h"><?=$value->txt?></div>
+								        </div>
+								    </a>
+					                <a href="<?=url('blog', $value)?>" class="db p15 tac fz20 fwb cor_fff brb20 bs1" style="<?=degrade('140deg, #DE9447 0%, #D8C292 90%')?>">Acessar</a>
+							    </div>
+							</div>
+							<?=clear($key, 3)?>
+						<? } ?>
+					</div>
+			        <div class="clear"></div>
+				</div>
+			</div>
+
+
+		<? } else { ?>
+			<? $img->foto = 'foto1'; ?>
+			<div class="" style="background: url(<?=$img->img($item, 0, 0, 1)?>)">
+				<div class="centerr">
+					<div class="h100"></div>
+					<div class="h60"></div>
+					<div class="cor_fff">
+						<div class="pt20 fz16 lh24"><?=$item->data1!='0000-00-00' ? data($item->data1) : ''?> <?=$item->autor ? 'Escrito por: '.$item->autor : ''?></div>
+			            <div class="pt10 fz40 fwb"><?=$item->nome?></div>
+			        </div>
+			        <div class="h60"></div>
+			    </div>
+			</div>
+
+			<div class="pt60 pb60">
+					<div class="centerr">
+						<div class="fz16 lh24"><?=txt($item)?></div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="pt60 pb60">
+				<div class="centerr">
+					<div class="fz45 fwb9">ÚLTIMAS NOTÍCIAS</div>
+					<div class="pt40">
+						<? foreach ($blogs as $key => $value) { ?>
+							<div class="wr4 p15 pb60">
+							    <div class="">
+							    	<a href="<?=url('blog', $value)?>">
+								        <div class="">
+								            <? $img->tags = ' class="db max-w100p m-a brt20" '; ?>
+								            <?=$img->img($value)?>
+								        </div>
+								        <div class="p20 bs1">
+								            <div class="h24 fz20 fwb limit"><?=$value->nome?></div>
+								            <div class="pt10 h110 fz14 lh24 o-h"><?=$value->txt?></div>
+								        </div>
+								    </a>
+					                <a href="<?=url('blog', $value)?>" class="db p15 tac fz20 fwb cor_fff brb20 bs1" style="<?=degrade('140deg, #DE9447 0%, #D8C292 90%')?>">Acessar</a>
+							    </div>
+							</div>
+							<?=clear($key, 3)?>
+						<? } ?>
+					</div>
+			        <div class="clear"></div>
+				</div>
+			</div>
+
+
+		<? } ?>
+
+
+	</section>

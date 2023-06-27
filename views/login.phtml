@@ -1,0 +1,113 @@
+
+    <script>
+        <? if($_GET['pg'] == 'login'){ ?>
+            $(document).ready(function(){
+                $('.BOX_LOGIN').show();
+            });
+        <? } ?>
+        <? if(isset($_GET['abrir']) AND $_GET['abrir']){ ?>
+            $(document).ready(function(){
+                $('.<?=$_GET['abrir']?>').show();
+            });
+        <? } ?>
+    </script>
+
+    <? if($_GET['pg'] == 'login'){ ?>
+        <div class="">
+            <? $img->tags = ' class="db m-a" ' ?>
+            <?=$img->img($textos[4])?>
+        </div>
+    <? } ?>
+
+    <!-- LOGIN -->
+        <div class="dn posa t0 l0 z9 w100p h100p BOX_LOGIN" style="margin-top: 10%;">
+            <div class="centerr1">
+                <div class="p40 pt20 br15 back_fff bs1">
+
+                    <div class="posr">
+                        <a onclick="$('.BOX_LOGIN').hide();" class="posa t0 r0 fz40 fwb">X</a>
+                        <div class="fz50 fwb tac">Login</div>
+
+                        <div class="pt60">
+                            <div class="centerr4">
+                                <?
+                                    $url = DIR_D;
+                                    $url = str_replace('/login/', '', $url);
+                                    $url = str_replace('/login', '', $url);
+                                ?>
+
+                                <form id="form_login" method="post" action="">
+                                    <div class="p10">
+                                        <div class="fz16 fwb">Email</div>
+                                        <div class="pt5">
+                                            <input type="text" name="email" class="design w100p" placeholder="Digite aqui" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="p10">
+                                        <div class="fz16 fwb">Senha</div>
+                                        <div class="posr pt5 eye_password">
+                                            <input type="password" name="senha" class="design w100p" placeholder="Digite aqui" required>
+                                            <div class="posa t0 r0 mt10 mr10 fz24">
+                                                <i class="faa-eye dn mr10 vat" onclick="eye_password(0)"></i>
+                                                <i class="faa-eye-slash mr10 vat"  onclick="eye_password(1)"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clear"></div>
+
+                                    <div class="p10 tar">
+                                        <a onclick="$('.BOX_LOGIN').hide(); $('.BOX_CADASTRO').show();" class="fll fz16 link">Cadastre-se</a>
+                                        <a onclick="boxs('esqueci_senha')" class="flr fz16 link">Esqueceu sua senha?</a>
+                                        <div class="clear"></div>
+                                    </div>
+
+                                    <div class="pt20 tac">
+                                        <div class=""><button class="dib p10 pl60 pr60 fz20 fwb cor_fff bd0 back_<?=COR1?> br20">Entrar</button></div>
+                                    </div>
+
+                                    <input type="hidden" name="direcionar" value="<?=$url?>" />
+                                    <input type="hidden" name="fazer_login" value="1">
+                                </form>
+                                <script>ajaxForm('form_login', 'login.php')</script>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+
+
+                </div>
+            </div>
+        </div>
+    <!-- LOGIN -->
+
+
+    <!-- CADASTRO -->
+        <div class="dn posa t0 l0 z9 w100p h100p BOX_CADASTRO">
+            <div class="h30"></div>
+            <div class="centerr1">
+                <div class="p40 pt20 br15 back_fff bs1">
+
+                    <div class="posr">
+                        <a onclick="$('.BOX_CADASTRO').hide();" class="posa t0 r0 fz40 fwb">X</a>
+                        <div class="fz50 fwb tac">Cadastrar</div>
+
+                        <div class="pt40">
+                            <?
+                                if($_GET['pg'] != 'cadastro'){
+                                    $_GET['include_cadsatroo'] = 1;
+                                }
+                                include DIR_F.'/views/cadastro.phtml';
+                            ?>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+
+
+                </div>
+            </div>
+        </div>
+    <!-- CADASTRO -->
+

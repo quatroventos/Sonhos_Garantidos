@@ -1,0 +1,124 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <header>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="<?=DIR?>/"><img src="<?=DIR?>/web/img/logo.png" class="max-w300" /></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+
+                <div class="collapse navbar-collapse d-flex" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <button class="btn btn-outline-success" type="submit">Crie seu sonho</button>
+
+            </div>
+        </nav>
+
+
+        <!-- Background image -->
+        <div class="p-5 text-center bg-image" style="background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/041.webp');height: 400px;">
+            <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
+                <div class="d-flex justify-content-center align-items-center h-100">
+                    <div class="text-white">
+                        <h1 class="mb-3">Heading</h1>
+                        <h4 class="mb-3">Subheading</h4>
+                        <a class="btn btn-outline-light btn-lg" href="#!" role="button">Call to action</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Background image -->
+
+        
+        <div class="posa t0 l0 z9 w100p pt30 poss_1000 p0_1000" style="display: none;">
+            <div class="centerr">
+                <div class="p10 pl40 pr40 flexx flex_c flex_ac back_fff br50">
+                    <div class="flex_1 tac"><a href="<?=DIR?>/"><img src="<?=DIR?>/web/img/logo.png" class="max-w300" /></a></div>
+                    <div class="flex_2 flexx flex_c flex_ac">
+                        <a onclick="$('.MENUU').toggle()" class="db p10"><i class="faa-bars fz28"></i></a>
+                        <div class="w300 pl40 pr40 flex_1">
+                            <form class="posr" method="get" action="<?=DIR?>/doacoes/">
+                                <input type="text" name="busca" class="w100p h40 fz14i fwb bd0 bdb_ccc back0" <?=isset($_GET['busca']) ? ' value="'.$_GET['busca'].'" ' : ' placeholder="Buscar" ';?>  />
+<!--                                <button class="posa t0 r0 mt10 mr10 bd0 back0"><i class="faa-search fz16"></i></button>-->
+                                <div class="clear"></div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="flex_2 flexx flex_c flex_ac">
+                        <? if(isset($_SESSION['x_site']->id)){ ?>
+                            <div class="pl40 fz14 fwb dn_1000"><a href="<?=DIR?>/minha_conta" >Minha Conta</a></div>
+                            <div class="pl40 fz14 fwb dn_1000"><a onclick="ajaxNormal('ajaxForm/login.php?sair=1');">Sair</a></div>
+                            <div class="pl40 fz14 fwb dn_1000"><a href="<?=DIR?>/minha_conta/meus_sonhos/criar_um_sonho"><u>Criar um sonho</u></a></div>
+                        <? } else { ?>
+                            <div class="pl40 fz14 fwb dn_1000"><a onclick="$('.BOX_LOGIN').hide(); $('.BOX_CADASTRO').show();">Cadastre-se</a></div>
+                            <div class="pl40 fz14 fwb dn_1000"><a onclick="$('.BOX_CADASTRO').hide(); $('.BOX_LOGIN').show();">Login</a></div>
+                            <div class="pl40 fz14 fwb dn_1000"><a href="<?=DIR?>/login/minha_conta/meus_sonhos/criar_um_sonho"><u>Criar um sonho</u></a></div>
+                        <? } ?>
+                    </div>
+                </div>
+
+                <div class="dn posa z9 w300 p30 pl40 pr40 ml30 mt-20 back_fff bs1 MENUU">
+                    <ul class="fz16">
+                        <li class=""><a href="<?=DIR?>/home/">Home</a></li>
+                        <li class="pt15"><a href="<?=url_txt(4)?>">Quem Somos</a></li>
+                        <li class="pt15"><a href="<?=DIR?>/doacoes/">Doações</a></li>
+                        <li class="pt15"><a href="<?=DIR?>/blog/">Blog</a></li>
+                        <li class="pt15"><a href="<?=DIR?>/faq/">Dúvidas</a></li>
+                        <li class="pt15"><a href="<?=url_txt(5)?>">Taxas e Prazos</a></li>
+                        <li class="pt15"><a href="<?=url_txt(2)?>">Política de Privacidade</a></li>
+                        <li class="pt15 dnn_1000"><a href="<?=DIR?>/fale/">Criar um sonho</a></li>
+                        <? if(isset($_SESSION['x_site']->id)){ ?>
+        	                <li class="pt15 dnn_1000"><a href="<?=DIR?>/minha_conta/">Minha Conta</a></li>
+    	                    <li class="pt15 dnn_1000"><a onclick="ajaxNormal('ajaxForm/login.php?sair=1');">Sair</a></li>
+                        <? } else { ?>
+	                        <li class="pt15 dnn_1000"><a onclick="$('.BOX_LOGIN').hide(); $('.BOX_CADASTRO').show();">Cadastre-se</a></li>
+	                        <li class="pt15 dnn_1000"><a onclick="$('.BOX_CADASTRO').hide(); $('.BOX_LOGIN').show();">Login</a></li>
+						<? } ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+    </header>
+
+
+
+    <!-- LOGIN -->
+        <?
+            if($_GET['pg'] == 'home' OR $_GET['pg'] == 'cadastro' OR $_GET['pg'] == 'textos' OR $_GET['pg'] == 'doacoes' OR $_GET['pg'] == 'doacao' OR $_GET['pg'] == 'blog' OR $_GET['pg'] == 'faq' OR $_GET['pg'] == 'fale'){
+                include 'login.phtml';
+            }
+        ?>
+    <!-- LOGIN -->

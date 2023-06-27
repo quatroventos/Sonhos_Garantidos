@@ -1,0 +1,59 @@
+
+	<section id="faq">
+
+		<? $img->foto = 'foto_8'; ?>
+		<div class="" style="background: url(<?=$img->img($textos[6], 0, 0, 1)?>) center;">
+			<div class="centerr">
+				<div class="h100"></div>
+				<div class="h60"></div>
+				<div class="cor_fff">
+					<div class="pt20 fz40 fwb"><?=$textos[6]->nome_8?></div>
+		            <div class="pt10 fz16 lh24"><?=$textos[6]->txt_8?></div>
+		        </div>
+		        <div class="h60"></div>
+		    </div>
+		</div>
+
+		<div class="pt60 pb60">
+			<div class="centerr">
+                <div class="faq">
+                    <? foreach ($faq as $key => $value) { ?>
+                        <div onclick="faq(this)" class="pb20 c-p <?=!$key ? 'ativo' : ''?>">
+                            <div class="p30 bd_f4f4f4 back_fff br5 bs1">
+                                <div class="posr">
+                                    <div class="fz24 fwb nomee"><?=$value->nome?></div>
+                                    <div class="posa t0 r0 w50 h100p fz28 c_flex jc">
+                                        <i class="faa-angle-up"></i>
+                                        <i class="faa-angle-down"></i>
+                                    </div>
+                                </div>
+                                <div class="pt20 fz16 lh24 txt">
+                                    <?=$value->txt?>
+                                </div>
+                            </div>
+                        </div>
+                    <? } ?>
+                </div>
+				
+			</div>
+		</div>
+
+        <style>
+            .faq .txt { display: none; }
+            .faq .ativo .txt { display: block; }
+
+            .faq .ativo .nomee { color: #<?=COR1?> }
+
+            .faq .faa-angle-up { display: none; }
+            .faq .faa-angle-down { display: block; }
+            .faq .ativo .faa-angle-up { display: block; }
+            .faq .ativo .faa-angle-down { display: none; }
+        </style>
+        <script>
+            function faq(e){
+                $('.faq .ativo').removeClass('ativo');
+                $(e).addClass('ativo');
+            }
+        </script>
+
+	</section>
