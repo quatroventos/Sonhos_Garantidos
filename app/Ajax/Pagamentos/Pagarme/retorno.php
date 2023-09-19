@@ -29,7 +29,7 @@
 				],
 			]);
 			$response = curl_exec($curl);
-			curl_close($curl);	
+			curl_close($curl);
 			$array = json_decode($response);
 
 
@@ -50,7 +50,7 @@
 
 
 			if(isset($array->data->status)){
-	
+
 			    // Status
 				$status = 0;
 				if(strtolower($array->data->status) == 'paid'){
@@ -59,18 +59,18 @@
 				if(strtolower($array->data->status) == 'unpaid' OR strtolower($array->data->status) == 'canceled' OR strtolower($array->data->status) == 'refused' OR strtolower($array->data->status) == 'failed'){
 					$status = 2;
 				}
-	
+
 			    // Referencia
 			    $reference = $array->data->items[0]->code;
-	
+
 			    // Preco
 			    $preco = $array->data->amount;
-	
+
 			    // status1
 				$status1 = $array->data->status;
 
 				include DIR_F.'/app/Ajax/Pagamentos/z_retorno.php';
-	
+
 			//} else {
 				//unset($mysql->campo);
 				//$mysql->campo['data'] = date('Y-m-d H:i:s');

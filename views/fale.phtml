@@ -1,72 +1,111 @@
 
 	<section id="fale">
 
-		<? $img->foto = 'foto_9'; ?>
-		<div class="" style="background: url(<?=$img->img($textos[6], 0, 0, 1)?>) center;">
-			<div class="centerr">
-				<div class="h100"></div>
-				<div class="h60"></div>
-				<div class="cor_fff">
-					<div class="pt20 fz40 fwb"><?=$textos[6]->nome_9?></div>
-		            <div class="pt10 fz16 lh24"><?=$textos[6]->txt_9?></div>
-		        </div>
-		        <div class="h60"></div>
-		    </div>
-		</div>
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-12">
+                    <h1>CONTATO</h1>
+                </div>
+            </div>
+            <div class="row justify-content-md-center">
+                <div class="col-12 col-md-8">
+                    <h2 class="lead">Entre em contato conosco.</h2>
+                </div>
+            </div>
 
+            <div class="row justify-content-md-center mt-4">
+                <div class="col-12 col-md-3 social text-center">
+                    <a href="">
+                        <svg width="42" height="41" viewBox="0 0 42 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_51_2948)">
+                                <path d="M41.9648 20.5C41.9648 9.17815 32.7867 0 21.4648 0C10.143 0 0.964844 9.17815 0.964844 20.5C0.964844 30.732 8.46136 39.2131 18.2617 40.751V26.4258H13.0566V20.5H18.2617V15.9836C18.2617 10.8458 21.3223 8.00781 26.0049 8.00781C28.2471 8.00781 30.5938 8.4082 30.5938 8.4082V13.4531H28.0088C25.4623 13.4531 24.668 15.0335 24.668 16.6562V20.5H30.3535L29.4446 26.4258H24.668V40.751C34.4683 39.2131 41.9648 30.732 41.9648 20.5Z" fill="#4267B2"/>
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_51_2948">
+                                    <rect width="41" height="41" fill="white" transform="translate(0.964844)"/>
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </a>
 
-		<div class="pt60 pb60">
-			<div class="centerr1">
-				<div class="">
-					<form id="formAjax1" method="post" action="" enctype="multipart/form-data" >
+                    <a href="">
+                        <svg width="40" height="41" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_51_2947)">
+                                <path d="M20.0001 3.6916C25.2886 3.6916 25.9149 3.71562 27.9947 3.81172C29.9276 3.8998 30.9714 4.23613 31.6672 4.51641C32.5873 4.88477 33.2522 5.3332 33.9404 6.0459C34.6362 6.7666 35.0615 7.44727 35.4171 8.4002C35.6877 9.1209 36.0124 10.21 36.0975 12.2039C36.1903 14.366 36.2135 15.0146 36.2135 20.484C36.2135 25.9613 36.1903 26.61 36.0975 28.7641C36.0124 30.766 35.6877 31.8471 35.4171 32.5678C35.0615 33.5207 34.6285 34.2094 33.9404 34.9221C33.2445 35.6428 32.5873 36.0832 31.6672 36.4516C30.9714 36.7318 29.9199 37.0682 27.9947 37.1562C25.9071 37.2523 25.2809 37.2764 20.0001 37.2764C14.7117 37.2764 14.0854 37.2523 12.0056 37.1562C10.0727 37.0682 9.02888 36.7318 8.33303 36.4516C7.41296 36.0832 6.74803 35.6348 6.05991 34.9221C5.36406 34.2014 4.93882 33.5207 4.58316 32.5678C4.31255 31.8471 3.98782 30.758 3.90278 28.7641C3.80999 26.602 3.7868 25.9533 3.7868 20.484C3.7868 15.0066 3.80999 14.358 3.90278 12.2039C3.98782 10.202 4.31255 9.1209 4.58316 8.4002C4.93882 7.44727 5.37179 6.75859 6.05991 6.0459C6.75577 5.3252 7.41296 4.88477 8.33303 4.51641C9.02888 4.23613 10.0804 3.8998 12.0056 3.81172C14.0854 3.71562 14.7117 3.6916 20.0001 3.6916ZM20.0001 0C14.6266 0 13.954 0.0240234 11.8432 0.120117C9.74019 0.216211 8.29437 0.568555 7.04184 1.07305C5.73518 1.60156 4.62955 2.29824 3.53165 3.44336C2.42602 4.58047 1.75337 5.72559 1.24308 7.0709C0.755981 8.37617 0.415787 9.86562 0.323006 12.0437C0.230226 14.2379 0.207031 14.9346 0.207031 20.5C0.207031 26.0654 0.230226 26.7621 0.323006 28.9482C0.415787 31.1264 0.755981 32.6238 1.24308 33.9211C1.75337 35.2744 2.42602 36.4195 3.53165 37.5566C4.62955 38.6938 5.73518 39.3984 7.03411 39.9189C8.29437 40.4234 9.73246 40.7758 11.8355 40.8719C13.9462 40.968 14.6189 40.992 19.9924 40.992C25.3659 40.992 26.0386 40.968 28.1493 40.8719C30.2523 40.7758 31.6982 40.4234 32.9507 39.9189C34.2496 39.3984 35.3553 38.6938 36.4532 37.5566C37.5511 36.4195 38.2314 35.2744 38.734 33.9291C39.2211 32.6238 39.5613 31.1344 39.6541 28.9563C39.7468 26.7701 39.77 26.0734 39.77 20.508C39.77 14.9426 39.7468 14.2459 39.6541 12.0598C39.5613 9.88164 39.2211 8.38418 38.734 7.08691C38.2469 5.72559 37.5742 4.58047 36.4686 3.44336C35.3707 2.30625 34.2651 1.60156 32.9662 1.08105C31.7059 0.576562 30.2678 0.224219 28.1648 0.128125C26.0463 0.0240234 25.3737 0 20.0001 0Z" fill="#833AB4"/>
+                                <path d="M19.9992 9.96973C14.386 9.96973 9.83203 14.6863 9.83203 20.5C9.83203 26.3137 14.386 31.0303 19.9992 31.0303C25.6124 31.0303 30.1664 26.3137 30.1664 20.5C30.1664 14.6863 25.6124 9.96973 19.9992 9.96973ZM19.9992 27.3307C16.3576 27.3307 13.4041 24.2717 13.4041 20.5C13.4041 16.7283 16.3576 13.6693 19.9992 13.6693C23.6408 13.6693 26.5943 16.7283 26.5943 20.5C26.5943 24.2717 23.6408 27.3307 19.9992 27.3307Z" fill="#833AB4"/>
+                                <path d="M32.9426 9.55313C32.9426 10.9145 31.8756 12.0115 30.5689 12.0115C29.2546 12.0115 28.1953 10.9064 28.1953 9.55313C28.1953 8.1918 29.2623 7.09473 30.5689 7.09473C31.8756 7.09473 32.9426 8.19981 32.9426 9.55313Z" fill="#833AB4"/>
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_51_2947">
+                                    <rect width="39.5862" height="41" fill="white" transform="translate(0.207031)"/>
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </a>
+
+                    <a href="">
+                        <svg width="42" height="41" viewBox="0 0 42 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_51_2946)">
+                                <path d="M37.9982 0H3.06016C1.38652 0 0.0332031 1.32129 0.0332031 2.95488V38.0371C0.0332031 39.6707 1.38652 41 3.06016 41H37.9982C39.6719 41 41.0332 39.6707 41.0332 38.0451V2.95488C41.0332 1.32129 39.6719 0 37.9982 0ZM12.1971 34.9381H6.11113V15.367H12.1971V34.9381ZM9.1541 12.7004C7.2002 12.7004 5.62266 11.1229 5.62266 9.17695C5.62266 7.23105 7.2002 5.65352 9.1541 5.65352C11.1 5.65352 12.6775 7.23105 12.6775 9.17695C12.6775 11.1148 11.1 12.7004 9.1541 12.7004ZM34.9713 34.9381H28.8934V25.4248C28.8934 23.1586 28.8533 20.2357 25.7303 20.2357C22.5672 20.2357 22.0867 22.7102 22.0867 25.2646V34.9381H16.0168V15.367H21.8465V18.0416H21.9266C22.7354 16.5041 24.7213 14.8785 27.6762 14.8785C33.8342 14.8785 34.9713 18.9305 34.9713 24.1996V34.9381Z" fill="#0072B1"/>
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_51_2946">
+                                    <rect width="41" height="41" fill="white" transform="translate(0.0332031)"/>
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="row justify-content-md-center mt-5">
+					<form id="formAjax1" class="col-12 col-md-6" method="post" action="" enctype="multipart/form-data" >
 						<input name="to" type="hidden" value="<?=$emails->email?>" />
 						<input name="assunto" type="hidden" value="Contato" />
 
-						<div class="">
-							<div class="fz16 fwb">Nome Completo</div>
-							<div class="pt5">
-								<input type="text" name="mail[campo][]" class="design w100p" placeholder="Digite aqui" required /> 
-								<input type="hidden" name="mail[nome][]" value="Nome" />
-							</div>
-						</div>
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="mail[campo][]">Nome Completo</label>
+                                <input type="text" name="mail[campo][]" class="form-control" placeholder="Seu nome" required />
+                                <input type="hidden" name="mail[nome][]" value="Nome" />
+                            </div>
+                        </div>
 
-						<div class="wr6 mt20">
-							<div class="fz16 fwb">Email</div>
-							<div class="pt5">
-								<input type="email" name="mail[campo][]" class="design w100p" placeholder="Digite aqui" required /> 
-								<input type="hidden" name="mail[nome][]" value="Email" />
-							</div>
-						</div>
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <label for="mail[campo][]">Email</label>
+                                <input type="email" name="mail[campo][]" class="form-control" placeholder="Sei e-mail" required />
+                                <input type="hidden" name="mail[nome][]" value="Email" />
+                            </div>
 
-						<div class="wr6 mt20 pl20 p0_1000">
-							<div class="fz16 fwb">Telefone</div>
-							<div class="pt5">
-								<input type="text" name="mail[campo][]" class="design w100p" placeholder="Digite aqui" required /> 
-								<input type="hidden" name="mail[nome][]" value="Nome" />
-							</div>
-						</div>
-						<div class="clear"></div>
+                            <div class="col-12 col-md-6">
+                                <label for="mail[campo][]">Telefone</label>
+                                <input type="text" name="mail[campo][]" class="form-control" placeholder="Seu telefone" required />
+                                <input type="hidden" name="mail[nome][]" value="Nome" />
+                            </div>
+                        </div>
 
-						<div class="mt20">
-							<div class="fz16 fwb">Mensagem</div>
-							<div class="pt5">
-					            <textarea name="mail[campo][]" class="design w100p h150" placeholder="Digite aqui"></textarea>
-								<input type="hidden" name="mail[nome][]" value="Mensagem" />
-							</div>
-						</div>
+                        <div class="row">
+                            <div class="col-12">
+                                <label class="mail[campo][]">Mensagem</label>
+                                <textarea name="mail[campo][]" class="form-control" placeholder="Mensagem"></textarea>
+                                <input type="hidden" name="mail[nome][]" value="Mensagem" />
+                            </div>
+                        </div>
 
-						<div class="pt20 tar">
-							<button class="dib p10 pl60 pr60 fz20 fwb cor_fff bd0 back_<?=COR1?> br20">Enviar</button>
-						</div>
+                        <div class="row justify-content-md-center">
+                            <div class="col-12 aligncenter">
+                                <button class="btn btn-send">Enviar</button>
+                            </div>
+                        </div>
 
 						<input type="reset" class="dni">
 						<input type="hidden" name="log_gravacoes" value="1" />
 
 					</form>
 					<script>ajaxForm('formAjax1', 'mail.php')</script>
-				</div>
-				<div class="clear"></div>
-			</div>
+            </div>
 		</div>
 
 	</section>

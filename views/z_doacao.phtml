@@ -1,30 +1,37 @@
 
-    <? $porc = doacoes_feitas_porc($value); ?>
+    <?
+        $porc = doacoes_feitas_porc($value);
+        if($porc >= 100){
+            $barraporc = 100;
+        }else{
+            $barraporc = $porc;
+        }
+    ?>
 
-    <a href="<?=url('doacao', $value)?>" class="db">
-        <div class="">
-            <? $img->tags = ' class="db max-w100p m-a brt20" '; ?>
+    <a href="<?=url('doacao', $value)?>">
+        <div class="item-image">
+
+            <? $img->tags = ' class="" '; ?>
             <?=$img->img($value)?>
+<!--            <img src="http://www.sonhosgarantidos.com.br/web/fotos/thumbnails/doacoes_17_autem-rerum-ab-est-s_sonhosgarantidos.com.br_zzb1dd5c9013_400x250.webp" title="Autem rerum ab est s" alt="Autem rerum ab est s" name="Autem rerum ab est s">-->
+
+
         </div>
-        <div class="p20 bdt_EBEBEB brb20 bs1">
-            <div class="">ID: <?=$value->id?></div>
+        <div class="item-card" style="color:#ccc; font-size: 12px;">
+            <small>Sonho: <?=$value->uniqid?></small>
+            <h2 class="item-title"><?=$value->nome?></h2>
+            <p class="item-description">
+                <?=truncateString($value->txt,150)?></p>
             <div class="pt5">
-                <div class="w<?=$porc?>p pb5 ml5 fz16 fwb tar cor_<?=COR1?>"><?=$porc?>%</div>
-                <div class="posr">
-                    <div class="posa w<?=$porc?>p h20 bd_ccc back_fff br10 bs1"></div>
-                    <div class="h20 br10 bs1" style="<?=degrade('140deg, #DE9447 0%, #D8C292 90%')?>"></div>
+                <div class="item-bar">
+                    <div class="item-bar-fill w<?=$barraporc?>p"></div>
+<!--                    <div class="item-bar-fill w50p"></div>-->
+                    <div class="item-bar-border"></div>
                 </div>
+                <div class="item-percentage"><?=$porc?>%</div>
             </div>
-            <div class="pt10">
-                <div class="wr6">Doações: <b><?=doacoes_feitas($value)?></b></div>
-                <div class="wr6 tar">Objetivo: <b><?=preco($value->preco, 1)?></b></div>
-                <div class="clear"></div>
-            </div>
-            <div class="pt20 bdb_EBEBEB"></div>
-            <div class="pt20 fz20 fwb limit"><?=$value->nome?></div>
-            <div class="pt10 h58 fz16 lh24 o-h"><?=$value->txt?></div>
             <div class="pt20 tac">
-                <div class="dib p10 pl60 pr60 fz20 fwb cor_fff back_<?=COR1?> br20">Doar</div>
+                <div class="btn btn-item">Mais detalhes</div>
             </div>
         </div>
     </a>

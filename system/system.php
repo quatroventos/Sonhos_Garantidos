@@ -1,7 +1,7 @@
 <?
 
 	class System {
-        
+
 
 		public function __construct(){
 
@@ -34,9 +34,12 @@
 				if($gets[0]=='textosp' OR $gets[0]=='textosp1'){
 					$_GET['pg'] = $gets[0] = 'textos';
 				}
+
+                if($gets[0]=='pagarme'){
+                    $_GET['pg'] = 'pagarme';
+                }
+
 			// CRIANDO GET PADRAO
-
-
 
 			// VERIFICANDO QUAL PAGINA CHAMAR
 				if( method_exists(new Controllers(), $gets[0]) ){
@@ -44,7 +47,7 @@
 
 					// Criando arquivo
 					if(!file_exists(DIR_F."/views/".$gets[0].".phtml") ){
-						copy(DIR_F."/views/home.phtml", "../views/".$gets[0].".phtml");					
+						copy(DIR_F."/views/home.phtml", "../views/".$gets[0].".phtml");
 						$gravar_file = fopen(DIR_F."/views/".$gets[0].".phtml", 'w');
 						$arquivo_novo  =
 						"<?\n".
@@ -80,11 +83,11 @@
 				unset($gets[0], $gets[1], $gets[2], $gets[3], $gets[4]);
 			// GET PADRAO
 
-			
+
 			// OUTROS GETS (a/1/b/2 => a=1, b=2)
 				// Excluindo o ultimo array se ult array for 0
 				if( !end($gets) ) array_pop($gets);
-	            
+
 				// Passando valores para ind e value
 				$i=0;
 				if($gets){
@@ -116,7 +119,7 @@
 
 
 		public function run(){
-		
+
 			// Abrindo Paginas
 			if(isset($_GET['pg'])){
 				if($_GET['pg'] == 'zzz'){
@@ -157,7 +160,7 @@
 					$Controllers->$pg();
 				}
 			//}
-		
+
 		}
 
 

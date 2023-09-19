@@ -50,7 +50,45 @@
                 return $return;
 			}
 
+            // meta
+            function doacoes_meta($value){
+                $mysql = new Mysql();
+
+                $mysql->filtro = " WHERE `id` = '".$value->id."' ";
+                $doacoes_pagamentos = $mysql->read('doacoes');
+
+                $return = 0;
+                foreach ($doacoes_pagamentos as $key1 => $value1) {
+                    $return += $value1->preco;
+                }
+                $return = preco($return, 1);
+
+                return $return;
+            }
+
+            // total doardores
+            function doacoes_total($value){
+                $mysql = new Mysql();
+
+                $mysql->filtro = " WHERE ".STATUS." AND situacao = 1 AND `doacoes` = '".$value->id."' ";
+                $doacoes_pagamentos = $mysql->read('doacoes_pagamentos');
+
+                $total = count($doacoes_pagamentos);
+
+                return $total;
+            }
+
 		// NOVO
+
+			function truncateString($string, $maxLength) {
+				if (strlen($string) > $maxLength) {
+					$string = substr($string, 0, $maxLength);
+					$string = rtrim($string, "!,.-");
+					$string = substr($string, 0, strrpos($string, ' '));
+					$string .= '...';
+				}
+				return $string;
+			}
 
 
 
@@ -113,7 +151,7 @@
 									}
 								}
 							}
-						}						
+						}
 					}
 
 				} else {
@@ -134,7 +172,7 @@
 								}
 							}
 						}
-					}					
+					}
 				}
 				return $return;
 			}
@@ -225,63 +263,63 @@
 						$valid_cvc = false;
 						switch($cartao){
 							case (bool) preg_match('/^(636368|438935|504175|451416|636297)/', $cartao) :
-								$bandeira = 'elo';			
+								$bandeira = 'elo';
 							break;
 
 							case (bool) preg_match('/^(606282)/', $cartao) :
-								$bandeira = 'hipercard';			
+								$bandeira = 'hipercard';
 							break;
 
 							case (bool) preg_match('/^(5067|4576|4011)/', $cartao) :
-								$bandeira = 'elo';			
+								$bandeira = 'elo';
 							break;
 
 							case (bool) preg_match('/^(3841)/', $cartao) :
-								$bandeira = 'hipercard';			
+								$bandeira = 'hipercard';
 							break;
 
 							case (bool) preg_match('/^(6011)/', $cartao) :
-								$bandeira = 'discover';			
+								$bandeira = 'discover';
 							break;
 
 							case (bool) preg_match('/^(622)/', $cartao) :
-								$bandeira = 'discover';			
+								$bandeira = 'discover';
 							break;
 
 							case (bool) preg_match('/^(301|305)/', $cartao) :
-								$bandeira = 'diners';			
+								$bandeira = 'diners';
 							break;
 
 							case (bool) preg_match('/^(34|37)/', $cartao) :
-								$bandeira = 'amex';			
+								$bandeira = 'amex';
 							break;
 
 							case (bool) preg_match('/^(36,38)/', $cartao) :
-								$bandeira = 'diners';			
+								$bandeira = 'diners';
 							break;
 
 							case (bool) preg_match('/^(64,65)/', $cartao) :
-								$bandeira = 'discover';			
+								$bandeira = 'discover';
 							break;
 
 							case (bool) preg_match('/^(50)/', $cartao) :
-								$bandeira = 'aura';			
+								$bandeira = 'aura';
 							break;
 
 							case (bool) preg_match('/^(35)/', $cartao) :
-								$bandeira = 'jcb';			
+								$bandeira = 'jcb';
 							break;
 
 							case (bool) preg_match('/^(60)/', $cartao) :
-								$bandeira = 'hipercard';			
+								$bandeira = 'hipercard';
 							break;
 
 							case (bool) preg_match('/^(4)/', $cartao) :
-								$bandeira = 'visa';			
+								$bandeira = 'visa';
 							break;
 
 							case (bool) preg_match('/^(5)/', $cartao) :
-								$bandeira = 'mastercard';			
+								$bandeira = 'mastercard';
 							break;
 						}
 
@@ -440,7 +478,7 @@
 					} else {
 
 					}
-					
+
 				}
 				return $return;
 			}
@@ -540,7 +578,7 @@
 				} else {
 					$mysql->colunas = 'nome, maps_lat, maps_lng, maps_zoom';
 					$mysql->filtro = " WHERE `tipo` = 'mapa' ";
-					$mapa = $mysql->read_unico('configs');					
+					$mapa = $mysql->read_unico('configs');
 				}
 				if($mapa->maps_lat AND $mapa->maps_lng){
 					$return =
@@ -578,7 +616,7 @@
 			function como_chegar($endereco){
 				$return = 'https://maps.google.com/maps?f=d&daddr='.$endereco.'+Brasil';
 				return $return;
-			}	
+			}
 
 			// Mapa Lat Long
 			function mapa_google($endereco){
@@ -603,7 +641,7 @@
 				$url = 'http://maps.google.com/maps/api/geocode/json?key='.KEY_GOOGLE;
 				$curl = curl_init($url . '?' . $data);
 				curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-				$resultado = json_decode(curl_exec($curl));			
+				$resultado = json_decode(curl_exec($curl));
 				curl_close($curl);
 				if(isset($resultado->results[0])){
 					$dados['lat'] = $resultado->results[0]->geometry->location->lat;
@@ -775,7 +813,7 @@
 					if($value=='categorias' AND isset($_GET['categorias']) AND $_GET['categorias'] != '-'){
 						//if(isset($_GET['tipo']) AND $_GET['tipo'] == 'sub'){
 							$return .= " AND (".categorias_subcategorias($_GET['categorias'], $table).") ";
-						//} else {							
+						//} else {
 						//	$return .= " AND `categorias` = '".$_GET['categorias']."' ";
 						//}
 					} elseif($value=='vcategorias' AND $_GET['categorias']!='-'){
@@ -786,7 +824,7 @@
 			}
 
 			// Filtro Busca
-			function filtro_busca($colunas='nome'){
+			function filtro_busca($colunas='nome, uniqid'){
 				if(isset($_GET['busca']) AND $_GET['busca'] == 'Buscar') $_GET['busca'] = '';
 				if(isset($_POST['busca']) AND $_POST['busca'] == 'Buscar') $_POST['busca'] = '';
 
@@ -910,7 +948,7 @@
 						} else {
 							imagewebp($image, $new_file);
 						}
-						imagedestroy($image);				
+						imagedestroy($image);
 				}
 			// CONVERTAR PARA WEBP
 
@@ -1229,7 +1267,7 @@
 		// NUMEROS
 			// Preco
 			function preco($valor, $sedula=0, $casas=2, $sinal=',', $sinal1='.', $nao_mostrar_zero=0){
-		
+
 				$valor = str_replace(',', '.', $valor);
 				$valor = floatval($valor);
 				$casas = ((int)$casas OR $casas=='0') ? (int)$casas : 2;
@@ -1286,12 +1324,12 @@
 			function extenso($valor=0, $complemento=true) {
 				$singular = array("centavo", "real", "mil", "milhão", "bilhão", "trilhão", "quatrilhão");
 				$plural = array("centavos", "reais", "mil", "milhões", "bilhões", "trilhões","quatrilhões");
-			 
+
 				$c = array("", "cem", "duzentos", "trezentos", "quatrocentos","quinhentos", "seiscentos", "setecentos", "oitocentos", "novecentos");
 				$d = array("", "dez", "vinte", "trinta", "quarenta", "cinquenta","sessenta", "setenta", "oitenta", "noventa");
 				$d10 = array("dez", "onze", "doze", "treze", "quatorze", "quinze","dezesseis", "dezesete", "dezoito", "dezenove");
 				$u = array("", "um", "dois", "três", "quatro", "cinco", "seis","sete", "oito", "nove");
-			 
+
 				$z = 0;
 				$rt = '';
 
@@ -1303,25 +1341,25 @@
 				for($i=0;$i<count($inteiro);$i++)
 					for($ii=mb_strlen($inteiro[$i]);$ii<3;$ii++)
 						$inteiro[$i] = "0".$inteiro[$i];
-			 
-				// $fim identifica onde que deve se dar junção de centenas por "e" ou por "," ;) 
+
+				// $fim identifica onde que deve se dar junção de centenas por "e" ou por "," ;)
 				$fim = count($inteiro) - ($inteiro[count($inteiro)-1] > 0 ? 1 : 2);
 				for ($i=0;$i<count($inteiro);$i++) {
 					$valor = $inteiro[$i];
 					$rc = (($valor > 100) && ($valor < 200)) ? "cento" : $c[$valor[0]];
 					$rd = ($valor[1] < 2) ? "" : $d[$valor[1]];
 					$ru = ($valor > 0) ? (($valor[1] == 1) ? $d10[$valor[2]] : $u[$valor[2]]) : "";
-				
+
 					$r = $rc.(($rc && ($rd || $ru)) ? " e " : "").$rd.(($rd && $ru) ? " e " : "").$ru;
 					$t = count($inteiro)-1-$i;
 					if ($complemento == true) {
 						$r .= $r ? " ".($valor > 1 ? $plural[$t] : $singular[$t]) : "";
 						if ($valor == "000")$z++; elseif ($z > 0) $z--;
-						if (($t==1) && ($z>0) && ($inteiro[0] > 0)) $r .= (($z>1) ? " de " : "").$plural[$t]; 
+						if (($t==1) && ($z>0) && ($inteiro[0] > 0)) $r .= (($z>1) ? " de " : "").$plural[$t];
 					}
 					if ($r) $rt = $rt . ((($i > 0) && ($i <= $fim) && ($inteiro[0] > 0) && ($z < 1)) ? ( ($i < $fim) ? ", " : " e ") : " ") . $r;
 				}
-			 
+
 				return($rt ? $rt : "zero");
 			}
 
@@ -1512,7 +1550,7 @@
 				$mes	= (int)$data[1];
 				$ano	= (int)$data[0];
 				$diasemana = date("w", mktime(0, 0, 0, (int)$mes, (int)$dia, (int)$ano));
-			
+
 				switch($diasemana) {
 					case 0: $return = "Domingo";	break;
 					case 1: $return = "Segunda";	break;
@@ -1576,7 +1614,7 @@
 						"authorization: Bearer ".$seller->melhor_envio_token,
 					),
 				));
-				
+
 				$response = curl_exec($curl);
 				$err = curl_error($curl);
 				curl_close($curl);
@@ -1599,10 +1637,10 @@
 						CURLOPT_URL => URL_MELHOR_ENVIO."/oauth/token",
 						CURLOPT_RETURNTRANSFER => true,
 						CURLOPT_CUSTOMREQUEST => "POST",
-						CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; 
-											name=\"grant_type\"\r\n\r\n".$post['grant_type']."\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; 
-											name=\"client_id\"\r\n\r\n".$post['client_id']."\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; 
-											name=\"client_secret\"\r\n\r\n".$post['client_secret']."\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; 
+						CURLOPT_POSTFIELDS => "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data;
+											name=\"grant_type\"\r\n\r\n".$post['grant_type']."\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data;
+											name=\"client_id\"\r\n\r\n".$post['client_id']."\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data;
+											name=\"client_secret\"\r\n\r\n".$post['client_secret']."\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data;
 											name=\"refresh_token\"\r\n\r\n".$post['refresh_token']."\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--",
 						CURLOPT_HTTPHEADER => array(
 							"accept: application/json",
@@ -1644,7 +1682,7 @@
 			function melhor_envio_cadastrar_rastreio($pedidos){
 				if(file_exists(DIR_F.'/plugins/Json/pedidos/'.$pedidos->id.'_'.$pedidos->seller.'_melhor_envio.json')){
 		            $melhor_envio = json_decode(file_get_contents(DIR_F.'/plugins/Json/pedidos/'.$pedidos->id.'_'.$pedidos->seller.'_melhor_envio.json'));
-	
+
 					if(isset($melhor_envio->purchase->orders[0]->protocol)){
 						$rastreamento = '';
 
@@ -1694,7 +1732,7 @@
 									$return = $produtos->seller;
 								}
 							}
-						}						
+						}
 					}
 
 					return $return;
@@ -1706,7 +1744,7 @@
 				function seller_produtos_carrinho(){
 					$return = 0;
 					$mysql = new Mysql();
-					if(isset($_SESSION['carrinho']['itens'])){ 
+					if(isset($_SESSION['carrinho']['itens'])){
 						foreach($_SESSION['carrinho']['itens'] as $key => $array){
 							foreach($array as $ref => $value){
 								$mysql->colunas = 'id, seller';
@@ -1797,7 +1835,7 @@
 
 						} else {
 							$mysql->filtro = " WHERE ".STATUS." ".$filtro." ".filtro_busca()." ORDER BY ".(isset($tablee['order']) ? $tablee['order'] : '')." ".ORDER." ".(isset($tablee['limit']) ? $tablee['limit'] : '')." "; // LIMIT ".$tablee['pg']."
-							$consulta = $mysql->read($tablee['banco']);						
+							$consulta = $mysql->read($tablee['banco']);
 						}
 					// CONSULTA
 
@@ -2219,7 +2257,7 @@
 
 					$y=1;
 					$conta_pagarme_taxa = (isset($conta->pagarme_taxa) AND $conta->pagarme_taxa>0) ? ($total*$conta->pagarme_taxa)/100 : 0;
-					for ($i=1; $i <= $max_parcelas; $i++) { 
+					for ($i=1; $i <= $max_parcelas; $i++) {
 						$valor = $total + $conta_pagarme_taxa;
 						$valor_juros = 0;
 						$juros = 'sem juros';
@@ -2603,12 +2641,12 @@
 					$mysql->campo['count'] = $value->count+1;
 					$mysql->filtro = " where id = '".$value->id."' ";
 					$mysql->update($value->table);
-				} 
+				}
 			// COUNTT
 
 			// INVERTER KEY
 				function inverter_key($arary){
-				    $return = array(); 
+				    $return = array();
 					foreach ($arary as $key => $value){
 						if(is_array($value)){
 							foreach ($value as $k => $v){
@@ -2623,18 +2661,18 @@
 
 			// DEGRADE
 				function degrade($cores){ // 140deg, #EADEDB 0%, #BC70A4 50%, #BFD641 75%
-					$return = "background-image: linear-gradient(".$cores.");"; 
+					$return = "background-image: linear-gradient(".$cores.");";
 					return $return;
 				}
 				function degrade_old($back1, $back2){
-				    $return = "background-image: linear-gradient(red,yellow);;"; 
+				    $return = "background-image: linear-gradient(red,yellow);;";
 					return $return;
 				}
 			// DEGRADE
 
 			// NBSP
 				function nbsp($txt){
-				    $return = str_replace(' ', '-', $txt); 
+				    $return = str_replace(' ', '-', $txt);
 					return $return;
 				}
 			// NBSP
@@ -2643,8 +2681,8 @@
 				function limpa_espacoes($array){
 					$return = $array;
 					foreach ($array as $key => $value) {
-					    $value = str_replace('          ', ' ', $value); 
-					    $return[$key] = str_replace('   ', ' ', $value); 
+					    $value = str_replace('          ', ' ', $value);
+					    $return[$key] = str_replace('   ', ' ', $value);
 					}
 					return $return;
 				}
@@ -2844,7 +2882,7 @@
 					$curl = curl_init('http://websro.correios.com.br/sro_bin/sroii_xml.eventos');
 					curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 					curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-					curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));				 
+					curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
 					$xml = curl_exec($curl);
 					curl_close($curl);
 					$xml= simplexml_load_string($xml);
@@ -3588,8 +3626,8 @@
 				$return = '';
 				if($video){
 					if(extensao($video) == 'mp4'){
-						$return = '	<video width="'.$width.'" height="'.$height.'" id="player1"  class="back_000" 
-										src="'.DIR.'/web/fotos/'.FOTOS.$video.'" type="video/'.extensao($video).'" 
+						$return = '	<video width="'.$width.'" height="'.$height.'" id="player1"  class="back_000"
+										src="'.DIR.'/web/fotos/'.FOTOS.$video.'" type="video/'.extensao($video).'"
 										'.iff($foto, 'poster="'.DIR.'/web/fotos/'.FOTOS.$foto.'" preload="none"').'
 										'.($tags!='no_controls' ? 'controls="controls" '.$tags : '').'>
 									</video> ';
@@ -3651,7 +3689,7 @@
 					$img = explode('&', $img[1]);
 					$img = explode('#', $img[0]);
 					$img = $img[0];
-		
+
 					$tamanho = ' width="'.$width.'" ';
 					if($height){
 						$tamanho .= ' height="'.$height.'" ';
@@ -3664,7 +3702,7 @@
 					//$return .= '	<img src="http://i4.ytimg.com/vi/'.$img.'/mqdefault.jpg" '.$tamanho.' class="'.$classe.'" />'; // 320x180
 					$return .= '	<img src="http://i.ytimg.com/vi/'.$img.'/maxresdefault.jpg" '.$tamanho.' class="'.$classe.'" />'; // 1280x720
 					$return .= '</div>';
-				}	
+				}
 				return ($return);
 			}
 
@@ -3678,7 +3716,7 @@
 
 			// Flash
 			function flash($width, $height, $caminho){
-		
+
 				$flash = '<object id="FlashID" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="'.$width.'" height="'.$height.'">
 								<param name="movie" value="'.$caminho.'" />
 								<param name="quality" value="high" />
@@ -3697,8 +3735,8 @@
 								</object>
 								<!--<![endif]-->
 							  </object>';
-		
-		
+
+
 				return($flash);
 			}
 		// VIDEOS
@@ -3770,7 +3808,7 @@
 							<a class="addthis_button_preferred_2"></a>
 							<a class="addthis_button_preferred_4"></a>
 							<a class="addthis_button_compact"></a>
-						</div>							
+						</div>
 						<script type="text/javascript" src="https://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4d7ff3113d47df6d"></script> ';
 				return $return;
 			};
@@ -3798,7 +3836,7 @@
 						            services_compact: "email, facebook, twitter, google_plusone_share, gmail, pinterest"
 						        }
 						        addthis.button(".share", [addthis_config], [{}]);
-						    }; 
+						    };
 						    addthis.addEventListener("addthis.ready", addthisReady);</script>';
 				return $return;
 			};
@@ -3815,8 +3853,8 @@
 								  fjs.parentNode.insertBefore(js, fjs);
 								}(document, "script", "facebook-jssdk"));</script> ';
 					return $return;
-				};				
-				// Curtir 
+				};
+				// Curtir
 				function facebook_curtir($url){
 					$return = facebook_script().'
 							  <div class="fb-like" data-href="'.$url.'" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div> ';
@@ -3903,7 +3941,7 @@
 						$return .= '} ';
 					$return .= '</script> ';
 					return $return;
-				};				
+				};
 			// FACEBOOK
 
 		// REDES SOCIAIS E COMPARTILHAMENTOS
@@ -4297,7 +4335,7 @@
 
 		// PADROES SISTEM
 			function curll($url, $post=NULL, array $header=array(), $put=0, $rest=0){
-			    $ch = curl_init($url); //Inicia o cURL			 		    
+			    $ch = curl_init($url); //Inicia o cURL
 			    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); //Pede o que retorne o resultado como string
 			    if(count($header) > 0) { //Envia cabeçalhos (Caso tenha)
 			        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
@@ -4315,7 +4353,7 @@
 			    }
 			    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); //Ignora certificado SSL
 			    $data = curl_exec($ch); //Manda executar a requisição
-			    curl_close($ch); //Fecha a conexão para economizar recursos do servidor		 
+			    curl_close($ch); //Fecha a conexão para economizar recursos do servidor
 			    return $data;
 			}
 
@@ -4367,7 +4405,7 @@
 			    		$file_1 = $dir_1 . DIRECTORY_SEPARATOR . $file;
 			    		$file_2 = $dir_2 . DIRECTORY_SEPARATOR . $file;
 			            if(is_dir($file_1)){
-			                copy_dir($file_1, $file_2); 
+			                copy_dir($file_1, $file_2);
 			            } else {
 			    			copy($file_1, $file_2);
 			            }
@@ -4387,19 +4425,19 @@
 			    }
 			}
 			// STRIP_TAGS
-			function strip_tags_content($text, $tags = '', $invert = FALSE) { 
-				preg_match_all('/<(.+?)[\s]*\/?[\s]*>/si', trim($tags), $tags); 
-				$tags = array_unique($tags[1]); 
-				if(is_array($tags) AND count($tags) > 0) { 
-					if($invert == FALSE) { 
-						return preg_replace('@<(?!(?:'. implode('|', $tags) .')\b)(\w+)\b.*?>.*?</\1>@si', '', $text); 
-					} else { 
-						return preg_replace('@<('. implode('|', $tags) .')\b.*?>.*?</\1>@si', '', $text); 
-					} 
-				} elseif($invert == FALSE) { 
-					return preg_replace('@<(\w+)\b.*?>.*?</\1>@si', '', $text); 
-				} 
-				return $text; 
+			function strip_tags_content($text, $tags = '', $invert = FALSE) {
+				preg_match_all('/<(.+?)[\s]*\/?[\s]*>/si', trim($tags), $tags);
+				$tags = array_unique($tags[1]);
+				if(is_array($tags) AND count($tags) > 0) {
+					if($invert == FALSE) {
+						return preg_replace('@<(?!(?:'. implode('|', $tags) .')\b)(\w+)\b.*?>.*?</\1>@si', '', $text);
+					} else {
+						return preg_replace('@<('. implode('|', $tags) .')\b.*?>.*?</\1>@si', '', $text);
+					}
+				} elseif($invert == FALSE) {
+					return preg_replace('@<(\w+)\b.*?>.*?</\1>@si', '', $text);
+				}
+				return $text;
 			}
 			// REMOVER A TAG IMG
 			function remover_tags_img($html) {

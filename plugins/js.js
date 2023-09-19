@@ -3692,7 +3692,7 @@ delete b.maskWatchers[this.selector];return this.each(function(){var a=b(this).d
 	    /* Mascara */
 			$("input.cpf, input#cpf").mask("000.000.000-00");
 			$("input.cnpj, input#cnpj").mask("00.000.000/0000-00");
-			$("input.cep, input#cep").mask("00.000-000");		
+			$("input.cep, input#cep").mask("00.000-000");
 
 			$('input.date').mask("00/00/0000");
 			$('input.data').mask("00/00/0000");
@@ -3729,7 +3729,7 @@ delete b.maskWatchers[this.selector];return this.each(function(){var a=b(this).d
 				}
         	// TELEFONE 8 OU 9 DIGITOS
 	    /* Mascara */
-	    
+
 	    /* Preco */
 			$("input.preco").each(function() {
 				$limit = $(this).attr('limit') ? parseInt($(this).attr('limit')) : '';
@@ -3893,7 +3893,7 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 				$('img[img_load="'+$img+'"]').attr('wh', $width+'_'+$height);
 			}
 			function img_loading(){
-				$('img[src_load]').each(function() {				
+				$('img[src_load]').each(function() {
 					var $scrollBottom = $(window).scrollTop() + $('.tela_full').height();
 					if($scrollBottom >= $(this).offset().top){
 						$src = $(this).attr('src_load');
@@ -3933,7 +3933,7 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 				});
 			});
 		// IMG Load
-	
+
 		// Alerts
 			function alerts($acao, $txt, $varios, $delay){
 				if(!$varios){
@@ -4000,7 +4000,7 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 						$url = 'Boxs/'+$ex[0]+'/';
 						$classe = $url_final = $ex[1];
 					}
-				} else {				
+				} else {
 					if($classe=='filtro_avancado'){
 						$_GET = converter_gets($itens);
 						if($_SESSION['filtro_avancado['+$_GET['id']+']'])
@@ -4027,7 +4027,7 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 							$delay = $json.delay ? $json.delay : '';
 							$.each($json.erro, function($key, $val) {
 								alerts(0, $val, 1, $delay);
-							});	
+							});
 
 						} else if($json.title && $json.html) {
 							// boxs
@@ -4104,7 +4104,7 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 				$('.carregando').stop(true, true).hide();
 				$('.carregando1').stop(true, true).hide();
 				$('.carregando_endereco').stop(true, true).hide();
-				$('.fechar_hide').stop(true, true).hide();				
+				$('.fechar_hide').stop(true, true).hide();
 				$('.fechar_fade').stop(true, true).delay(50).slideUp();
 				$('.fundoo').stop(true, true).delay(50).fadeOut();
 				$('.fundoo1').stop(true, true).delay(50).fadeOut();
@@ -4208,7 +4208,7 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 					$(e).parent().find(".sanfona").slideDown();
 				} else {
 					$(e).hide();
-					$(e).parent().find(".faa-plus").show();				
+					$(e).parent().find(".faa-plus").show();
 					$(e).parent().find(".sanfona").slideUp();
 				}
 			};
@@ -4308,7 +4308,7 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 					if($json.erro != null){
 						$.each($json.erro, function($key, $val) {
 							alerts(0, $val, 1);
-						});	
+						});
 					} else if($json.modal){
 						modals($json.modal);
 					} else {
@@ -4416,18 +4416,18 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 									$('.sistema_mautic input[name="mauticform[return]"]').val($json.dir);
 									setTimeout(function(){ $(".sistema_mautic button").trigger('click') }, 0.5);
 								}
-	
+
 								if($json.boxs_msg != null){
 									boxs('boxs_msg', 'html='+$json.boxs_msg);
 								} else {
-	
+
 									if($json.evento != null){
 										eval($json.evento);
 									}
 									if($json.erro != null){
 										$.each($json.erro, function($key, $val) {
 											alerts(0, $val, 1);
-										});	
+										});
 									} else if($json.modal){
 										modals($json.modal);
 									} else {
@@ -4663,7 +4663,7 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 
 	    	if($id==0){
 		    	$('section#home .cate').fadeIn();
-	    	} else {    		
+	    	} else {
 		    	$('section#home .cate_'+$id).fadeIn();
 		    	$('section#home .cate:not(.cate_'+$id+')').fadeOut();
 	    	}
@@ -4881,7 +4881,7 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 			$.each($array, function(key, val) {
 				value = val.split("=");
 				$return[value[0]] = value[1];
-			});	
+			});
 			return $return;
 		}
 
@@ -4889,7 +4889,7 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 		function getUrlVars(){
 			var $return = [], $hash;
 			var $hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-		 
+
 			for(var i = 0; i < $hashes.length; i++)
 			{
 				$hash = $hashes[i].split('=');
@@ -4897,7 +4897,7 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 				$return.push($hash[0]);
 				$return[$hash[0]] = $hash[1];
 			}
-		 
+
 			return $return;
 		}
 
@@ -5024,9 +5024,9 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 			} else {
 				$cor = 'color:#f00';
 				//alert('Use somente '+$max+' caracteres');
-			} 
+			}
 			$progreso.innerHTML = '<span style="'+$cor+'">('+$obj.value.length+' caracteres usados de '+$max+')</span>';
-	    } 
+	    }
 
 		// Input design
         function input_file_site(e, $classe){
@@ -5150,7 +5150,7 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 				if($palavra == $key && $value){
 					$return = $value;
 				}
-			});	
+			});
 			return $return;
 		}
 
@@ -5286,7 +5286,7 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 				if($tipo) requireds($classe, ".req_tipo_1", ".req_tipo_0");
 				else	  requireds($classe, ".req_tipo_0", ".req_tipo_1");
 			}, 0.5);
-		}			
+		}
 		function requireds($classe, $valide, $guardar){
 			$($classe+' '+$valide).html( $('.requireds '+$valide).html() );
 			$($classe+' '+$guardar).html('');
@@ -5361,8 +5361,8 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 									$x++;
 								}
 							}
-						});	
-					});	
+						});
+					});
 					$y++;
 					$classe_all += $classe+' || ';
 				}
@@ -5372,7 +5372,7 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 			$.each($css, function($key, $val) {
 				$css_final += criando_css($val);
 				//console.log($val);
-			});	
+			});
 			//console.log($classe_paii+' '+$y+' - '+$classe_all);
 
 			$('.events_externos .style').append('<style>'+$css_final+'</style>');
@@ -5380,7 +5380,7 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 		// IMPORTANT
 		function css_important($ex){
 			$return = '';
-			for ($i=0; $i < 10; $i++) { 
+			for ($i=0; $i < 10; $i++) {
 				$return += ($ex[$i] && $ex[$i]=='i') ? ' !important' : '';
 			}
 			return $return;
@@ -5403,7 +5403,7 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 						if($ex[1] == 'hover' && $ex[2]){
 							$val = '#'+$ex[2]+css_important($ex);
 						} else 	if($ex[2] && $ex[2] != 'i') {
-						    $val = 'filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="'+"#"+$ex[1]+'", endColorstr="'+"#"+$ex[2]+'");  background:-moz-linear-gradient(top, '+"#"+$ex[1]+', '+"#"+$ex[2]+'); background:-webkit-gradient(linear, left top, left bottom, from('+"#"+$ex[1]+'), to('+"#"+$ex[2]+'));'; 
+						    $val = 'filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="'+"#"+$ex[1]+'", endColorstr="'+"#"+$ex[2]+'");  background:-moz-linear-gradient(top, '+"#"+$ex[1]+', '+"#"+$ex[2]+'); background:-webkit-gradient(linear, left top, left bottom, from('+"#"+$ex[1]+'), to('+"#"+$ex[2]+'));';
 						} else {
 							$val = '#'+$ex[1]+css_important($ex);
 						}
@@ -5533,7 +5533,7 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 							$style = '.'+$value+'{display: none !important;}'+$style;
 						}
 					}
-				});	
+				});
 			// RESPONSIVO
 
 
@@ -5613,7 +5613,7 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 			else if($val.match('brl1') || $val.match('brl2') || $val.match('brl3') || $val.match('brl4') || $val.match('brl5') || $val.match('brl6') || $val.match('brl7') || $val.match('brl8') || $val.match('brl9'))		$return = 1;
 			else if($val.match('brr1') || $val.match('brr2') || $val.match('brr3') || $val.match('brr4') || $val.match('brr5') || $val.match('brr6') || $val.match('brr7') || $val.match('brr8') || $val.match('brr9'))		$return = 1;
 
-			return $return;					
+			return $return;
 		}
 	// CRIANDO CSS
 
@@ -5965,7 +5965,7 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 	                thumbItem: $thumb,
 	                onSliderLoad: function() {
 	                    $(this).removeClass('cS-hidden');
-	                }  
+	                }
 	            });
             });
 		}
@@ -6204,7 +6204,7 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 
 
 		// Tooltip
-		function tooltip(){			
+		function tooltip(){
 			// rel="tooltip" data-original-title=""
 			$('[rel="tooltip"]').tooltip({html:true});
 		}
@@ -6421,7 +6421,7 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 
 			$x=0;
 			$atributos += '&atributos_extra=';
-			$(".PP_atributos_extra select, .PP_atributos_extra input").each(function() { 
+			$(".PP_atributos_extra select, .PP_atributos_extra input").each(function() {
 				if($(this).val()){
 					$atributos += $x ? ' / ' : '';
 					$atributos += $(this).attr('dir') ? $(this).attr('dir') : '';
@@ -6444,7 +6444,7 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 					if($json.erro){
 						$.each($json.erro, function($key, $val) {
 							alerts(0, $val, 1);
-						});	
+						});
 					} else if($json.alert){
 						if($json.alert!='z'){
 							alerts(1, $json.alert);
@@ -6539,7 +6539,7 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 									$('.CC_item_'+$rel_classe+' input[name="qtd"]').val($val['qtd']);
 									$('.CC_item_'+$rel_classe+' .CC_item_qtd').html($val['qtd']);
 									$('.CC_item_'+$rel_classe+' .CC_item_subtotal').html($val['subtotal']);
-								});	
+								});
 							} else {
 								//window.location.reload();
 							}
@@ -6612,7 +6612,7 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 					error: function($request, $error){ ajaxErro($request, $error); },
 					success: function($json){
 						$(".carregando").hide();
-						
+
 						$(".PP_fretes").show();
 						$('.CC_box_frete').html($json.frete.html);
 
@@ -6660,7 +6660,7 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 				});
 			}
 		// PAGAMENTOS PLANOS
-	
+
 		// PAGAMENTO CARRNHO
 		    function Pagamento($metodo, $id){
 	    		fundoo1();
@@ -6744,12 +6744,12 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 								$('.CC_cartao_parcelamento_PagSeguro select').html('<option value="1">1x de R$&nbsp;'+$val+' sem juros (R$&nbsp;'+$val+')</option>');
 								$('.CC_cartao_parcelamento_PagSeguro').show();
 							}
-		
+
 							PagSeguroDirectPayment.getBrand({
 							    cardBin: $(".cartao_numero").val().replace(" ", ""),
 							    success: function(response) {
 									$brand = response.brand.name;
-		
+
 									if($pagseguro_brand != $brand){
 										$pagseguro_brand = $brand;
 
@@ -6831,7 +6831,7 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 							if($json.erro){
 								$.each($json.erro, function($key, $val) {
 									alerts(0, $val, 1);
-								});	
+								});
 
 							} else if($json.boleto_link){
 								$('.Cielo_boxs.boleto .gerar_boleto').html('<a href="'+$json.boleto_link+'" target="_blank"> <button class="hover db w100p p15 m-a fz20 ttu cor_fff bdw2 bd_DA0404 back_DA0404 br6">Gerar Boleto</button> </a>').slideDown();
@@ -6940,7 +6940,7 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 						$('.fundoo').stop(true, true).fadeIn(500).delay(2000).fadeOut(1000);
 					}
 				}
-			});			
+			});
 		};
 
 		// Cotacao Comprimento Alerts
@@ -6952,7 +6952,7 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
                     $(this).parent().parent().find('.qtd').val('');
                 }
             })
-            setTimeout(function(){ 
+            setTimeout(function(){
 	            $html  = '<div class="alerts_orca fechar_hide"> ';
 					$html += '<div class="alert alert_01 tac"> ';
 						$html += '<b class="fz16">O que deseja Fazer?</b> ';
@@ -7047,7 +7047,7 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 							map: map,
 							icon: $value.valido==1 ? 'plugins/Google/Pin/img/localizacao.png' : 'plugins/Google/Pin/img/pin.png',
 						});
-						
+
 						var myOptions = {
 							content: $value.txt,
 							pixelOffset: new google.maps.Size(-150, 0)
@@ -7400,7 +7400,7 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 				shuffle($efeito);
 				$.each($efeito, function($key, $val) {
 					$('.animated_'+$n).removeClass($val);
-				});	
+				});
 				$('.animated_'+$n).removeClass('animated').parent().css('overflow', 'hidden');
 				setTimeout(function(){
 					$('.animated_'+$n).addClass('animated '+$efeito[0]).css('opacity', '');
@@ -7423,10 +7423,10 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 			function tirar_efeitos_atuais($e){
 				$.each(efeitosIn($e), function($key, $val) {
 					$e.removeClass($val);
-				});	
+				});
 				$.each(efeitosOut($e), function($key, $val) {
 					$e.removeClass($val);
-				});	
+				});
 			}
 
 		});
@@ -7482,3 +7482,8 @@ d.trigger("activate.bs.scrollspy")},b.prototype.clear=function(){a(this.selector
 
 
 /* Eventos */
+
+//hack para alterar a altura da caixa de recuperação de senha:
+// Selecionar o elemento pela classe
+$('.esqueci_senha').css('top', '100px');
+

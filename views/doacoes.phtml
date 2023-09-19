@@ -1,28 +1,26 @@
 
-	<section id="doacoes">
+	<section id="texto">
 
-		<div class="">
-			<? $img->foto = 'foto_6'; ?>
-			<? $img->tags = ' class="db m-a" ' ?>
-			<?=$img->img($textos[6])?>
-		</div>
+        <div class="container mt-5">
+            <div class="row">
+                <h1>DOAÇÕES</h1>
+                <? if(isset($_GET['busca'])){?>
+                    <h2 class="lead">Buscando por: <?=$_GET['busca']?></h2>
+                <? } ?>
 
+            </div>
+        </div>
 
-		<div class="pt60 pb60">
-			<div class="centerr">
-				<div class="fz45 fwb7" style="line-height: 60px;"><?=$textos[6]->nome_6?></div>
-				<div class="pt20 fz16 lh24"><?=$textos[6]->txt_6?></div>
-
-				<div class="pt40">
-					<? foreach ($doacoes as $key => $value) { ?>
-						<div class="wr4 p15">
-							<? include DIR_F.'/views/z_doacao.phtml'; ?>
-						</div>
-						<?=clear($key, 3)?>
-					<? } ?>
-					<div class="pt20"><?=$pagg?></div>
-				</div>
-			</div>
-		</div>
+        <div class="container home-itens">
+            <div class="row">
+                <? foreach ($doacoes as $key => $value) { ?>
+                    <div class="col-sm-12 col-md-4">
+                        <div class="item">
+                            <? include DIR_F.'/views/z_doacao.phtml'; ?>
+                        </div>
+                    </div>
+                <? } ?>
+            </div>
+        </div>
 
 	</section>

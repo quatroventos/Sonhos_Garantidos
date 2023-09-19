@@ -1,0 +1,53 @@
+
+	<section id="cadastro">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col">
+                    <h1 class="page-title">CADASTRE-SE</h1>
+                </div>
+            </div>
+
+            <div class="row justify-content-md-center mt-5">
+
+                <form id="form_cadastro" class="col-md-6 col-sm-12" method="post" action="">
+                    <div class="remove_edit">
+                        <div class="row">
+                            <div class="col">
+                                <label>Senha</label>
+                                <input type="password" name="senha" class="form-control" placeholder="Digite aqui" required autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label>Confirmar a Senha</label>
+                                <input type="password" name="c_senha" class="form-control" placeholder="Digite aqui" required>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn-send">Alterar senha</button>
+                        </div>
+                    </div>
+
+                    <? if(isset($_GET['nome'])){ ?>
+                        <? $url = $_GET['nome'] ?>
+                        <? $url .= $_GET['id']!='-' ? '/'.$_GET['id'] : ($_GET['categorias']!='-' ? '/-' : ''); ?>
+                        <? $url .= $_GET['categorias']!='-' ? '/'.$_GET['categorias'] : ''; ?>
+                        <input type="hidden" name="direcionar" value="<?=$url?>" />
+                    <? } ?>
+
+                    <input type="hidden" name="gravar" value="1">
+                </form>
+
+
+            </div>
+        </div>
+            <script>ajaxForm('form_cadastro', 'cadastro.php')</script>
+	        <style>.carregando_endereco { display: none !important; }</style>
+	</section>
+

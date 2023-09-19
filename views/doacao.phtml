@@ -1,57 +1,88 @@
 
 	<section id="doacao">
 
-		<? $porc = doacoes_feitas_porc($item); ?>
+        <?
+        $porc = doacoes_feitas_porc($item);
+        if($porc > 100){
+            $barraporc = 100;
+        }else{
+            $barraporc = $porc;
+        }
+        ?>
 
-		<? $img->foto = 'foto1'; ?>
-		<div class="" style="background: url(<?=$img->img($item, 0, 0, 1)?>) center">
-			<div class="centerr">
-				<div class="h100"></div>
-				<div class="h100"></div>
-				<div class="h50"></div>
-				<div class="cor_fff">
-					<div class="pt20 fz40 fwb"><?=$item->nome?></div>
-		            <div class="pt10 fz20 fwb">ID: <?=$item->id?></div>
-		            <div class="pt30">
-		            	<div class="fll">
-		            		<a onclick="copyy('input.coppy')" class="dib fz20 vam cor_fff">
-		            			<div class="dib vam">Copiar Link</div>
-		            			<div class="dib vam"><i class="faa-copy"></i></div>
-		            		</a>
-		            		<a class="dni dib ml20 fz20 vam cor_fff"><i class="faa-facebook"></i></a>
-		            		<input type="text" class="w10 op0 coppy" value="<?=DIR_ALL?>">
-		            	</div>
-		            	<div class="flr">
-		            		<a href="<?=url('doacao_pagamento', $item)?>" class="dib p10 pl60 pr60 fz20 fwb cor_fff back_<?=COR1?> br20">Doar</a>
-		            	</div>
-		            	<div class="clear"></div>
-		            </div>
-		            <div class="pt30">
-			            <div class="w<?=$porc?>p pb10 ml20 fz20 fwb tar cor_<?=COR1?>"><?=$porc?>%</div>
-			            <div class="posr">
-			                <div class="posa w<?=$porc?>p h20 bd_ccc back_fff br10 bs1"></div>
-			                <div class="h20 br10 bs1" style="<?=degrade('140deg, #DE9447 0%, #D8C292 90%')?>"></div>
-			            </div>
-		            </div>
-		            <div class="pt20 fz18 cor_fff">
-		                <div class="wr6">Doações: <b><?=doacoes_feitas($item)?></b></div>
-		                <div class="wr6 tar">Objetico: <b><?=preco($item->preco, 1)?></b></div>
-		                <div class="clear"></div>
-		            </div>
-				</div>
-				<div class="h80"></div>
-			</div>
-		</div>
+        <? $img->foto = 'foto1'; ?>
 
 
-		<div class="pt60 pb60">
-			<div class="centerr">
-				<div class="pt20 bd_ccc br10 bs1">
+        <div class="container doacao-hero">
+            <div class="row">
+                <div class="col">
+                    <h1 class=""><?=$item->nome?></h1>
+                    <p><?=truncateString($item->txt,150)?></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container doacao-content">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="doacao-img" style="background:url(<?=$img->img($item, 0, 0, 1)?>) no-repeat center; background-size: cover"></div>
+                </div>
+                <div class="col">
+                    <div class="item-card">
+                        <small>Sonho: <?=$item->uniqid?></small>
+                        <div class="pt5">
+                            <div class="item-bar">
+                                    <div class="item-bar-fill w<?=$barraporc?>p"></div>
+<!--                                <div class="item-bar-fill w50p"></div>-->
+                                <div class="item-bar-border"></div>
+                            </div>
+                            <div class="item-percentage"><?=$porc?>%</div>
+                        </div>
+                        <div class="">
+                            <div class="doacoes-arrecadados"><?=doacoes_feitas($item);?></div>
+                            <small>arrecadados</small>
+                            <div class="doacoes-meta"><?=doacoes_meta($item);?></div>
+                            <small>meta</small>
+                            <div class="doacoes-total"><?=doacoes_total($item);?></div>
+                            <small>apoiadores</small>
+                        </div>
+                        <div class="col">
+                            <a href="<?=url('doacao_pagamento', $item)?>" class="btn btn-doar">Doar</a>
+                        </div>
+                        <div class="col">
+                            <div class="dropdown">
+                                <button class="btn btn-share dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                                    <path d="M352 224c53 0 96-43 96-96s-43-96-96-96s-96 43-96 96c0 4 .2 8 .7 11.9l-94.1 47C145.4 170.2 121.9 160 96 160c-53 0-96 43-96 96s43 96 96 96c25.9 0 49.4-10.2 66.6-26.9l94.1 47c-.5 3.9-.7 7.8-.7 11.9c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-25.9 0-49.4 10.2-66.6 26.9l-94.1-47c.5-3.9 .7-7.8 .7-11.9s-.2-8-.7-11.9l94.1-47C302.6 213.8 326.1 224 352 224z"/></svg>
+                                    Compartilhar
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <ul class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                                        <li><a class="a2a_button_facebook"></a></li>
+                                        <li><a class="a2a_button_twitter"></a></li>
+                                        <li><a class="a2a_button_pinterest"></a></li>
+                                        <li><a class="a2a_dd" href="https://www.addtoany.com/share"></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <script async src="https://static.addtoany.com/menu/page.js"></script>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- row -->
+            <div class="row">
+
+            </div>
+        </div><!-- container -->
+
+		<div class="container doacao-tabs" >
+			<div class="">
+				<div class="tabs">
 					<div class="fz20 tac flexx flex_c flex_ac">
-						<div onclick="txt_(0)" class="txt__ txt__0 p10 c-p flex_1 bdb_ccc ativo">Sobre</div>
-						<div onclick="txt_(1)" class="txt__ txt__1 p10 c-p flex_1 bdb_ccc">Quem Ajudou</div>
+						<div onclick="txt_(0)" class="tab txt__ txt__0 p10 c-p flex_1 bdb_ccc ativo">Sobre</div>
+						<div onclick="txt_(1)" class="tab txt__ txt__1 p10 c-p flex_1 bdb_ccc">Quem Ajudou</div>
 					</div>
-					<div class="p40 fz16 lh24">
+					<div class="tab-content p40 fz16 lh24">
 						<div class="txt_ txt_0"><?=$item->txt1?></div>
 						<div class="dn txt_ txt_1">
 							<?

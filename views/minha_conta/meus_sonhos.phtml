@@ -17,12 +17,21 @@
 
         if(isset($_POST['preco']))  $_POST['preco'] = preco_X($_POST['preco']);
 
+            function generateSixDigitNumber() {
+                $uniqid = uniqid();
+                $decimalUniqid = hexdec($uniqid);
+                $sixDigitNumber = $decimalUniqid % 1000000; // Garante que o número terá no máximo 6 dígitos
+
+                return str_pad($sixDigitNumber, 6, '0', STR_PAD_LEFT); // Preenche com zeros à esquerda se necessário
+            }
+
         unset($mysql->campo);
         $mysql->campo['cadastro'] = $_SESSION['x_site']->id;
         $mysql->campo['nome'] = $_POST['nome'];
         $mysql->campo['preco'] = $_POST['preco'];
         $mysql->campo['txt'] = $_POST['txt'];
         $mysql->campo['txt1'] = $_POST['txt1'];
+        $mysql->campo['uniqid'] = generateSixDigitNumber();
 
         if(isset($_GET['idd'])){
             $mysql->prepare = array($_GET['idd']);
@@ -159,7 +168,7 @@
                             <div class="pt10 h58 fz16 lh24 o-h"><?=$value->txt?></div>
                             <div class="pt20">
                                 <div class="wr6"><b>Data:</b> <?=data($value->data)?></div>
-                                <div class="wr6"><b>ID:</b> <?=$value->id?></div>
+                                <div class="wr6"><b>Sonho:</b> <?=$value->uniqid?></div>
                                 <div class="h20 clear"></div>
                                 <div class="wr6">
                                     <b>Status:</b>

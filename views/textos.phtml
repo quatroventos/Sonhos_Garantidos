@@ -1,100 +1,106 @@
 
 	<section id="textos">
 
-		<div class="">
-			<? $img->tags = ' class="db m-a" ' ?>
-			<?=$img->img($item)?>
-		</div>
+<!--        --><?// if($item->id != 4){ ?>
+<!--            <div class="container-fluid">-->
+<!--                --><?// $img->tags = ' class="db m-a" ' ?>
+<!--                --><?//=$img->img($item)?>
+<!--            </div>-->
+<!--        --><?// { ?>
 
-
-		<div class="pt60 pb60">
-			<div class="centerr">
-				<div class="fz45 fwb7"><?=$item->nome?></div>
-				<div class="pt20 fz16 lh24"><?=txt($item)?></div>
+		<div class="container">
+			<div class="row">
+				<h1><?=$item->nome?></h1>
+<!--				<h2 class="lead">--><?//=truncateString(txt($item), 100)?><!--</h2>-->
 			</div>
 		</div>
 
 
 		<? if($item->id == 4){ ?>
 
-			<div class="pt60 pb60">
-				<div class="centerr">
-					<div class="wr6">
-						<div class="fz45 fwb7" style="line-height: 60px;"><div class="">Objetivo da</div><div class="">empresa</div></div>
-						<div class="pt20 fz16 lh24"><?=$item->objetivos?></div>
-						<div class="pt40">
-							<div class="posa"><img src="<?=DIR?>/web/img/02.png" class="max-w70"></div>
-							<div class="pl90">
-								<div class="fz20 fwb7">Missão</div>
-								<div class="pt5 fz14 lh20"><?=$item->missao?></div>
-							</div>
-						</div>
-						<div class="pt40">
-							<div class="posa"><img src="<?=DIR?>/web/img/03.png" class="max-w70"></div>
-							<div class="pl90">
-								<div class="fz20 fwb7">Visão</div>
-								<div class="pt5 fz14 lh20"><?=$item->visao?></div>
-							</div>
-						</div>
-						<div class="pt40">
-							<div class="posa"><img src="<?=DIR?>/web/img/04.png" class="max-w70"></div>
-							<div class="pl90">
-								<div class="fz20 fwb7">Valores</div>
-								<div class="pt5 fz14 lh20"><?=$item->valores?></div>
-							</div>
-						</div>
-					</div>
-					<div class="wr6">
-						<div class="wr6 p10">
-							<div class="h100"></div>
-							<div class="h20"></div>
-							<? $img->foto = 'foto1'; ?>
-							<? $img->tags = ' class="br10" '; ?>
-							<?=$img->img($item, 270, 420)?>
-						</div>
-						<div class="wr6 p10">
-							<? $img->foto = 'foto2'; ?>
-							<? $img->tags = ' class="br10" '; ?>
-							<?=$img->img($item, 270, 420)?>
-						</div>
-						<div class="clear"></div>
-					</div>
-					<div class="clear"></div>
-				</div>
-			</div>
+                <div class="container mt-5">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 home-desc">
+                            <?=txt($item)?>
+                        </div>
+                        <div class="col">
+                            <?=$img->img($item)?>
+                        </div>
+                    </div>
+                </div>
 
-			<div class="pb60">
-				<div class="centerr">
-					<div class="fz45 fwb7" style="line-height: 60px;">Nossa Equipe</div>
-					<div class="pt20 fz16 lh24"><?=$item->nossa_equipe?></div>
+                <section class="container-fluid mt-5 mvv">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <svg width="84" height="73" viewBox="0 0 84 73" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M37.4938 2.5631L27.2411 21.3386L4.30212 24.3591C0.188486 24.898 -1.46011 29.4784 1.52306 32.1019L18.1189 46.7082L14.1937 67.3414C13.4872 71.0709 17.8363 73.8646 21.4789 72.1203L42 62.378L62.5211 72.1203C66.1637 73.8504 70.5129 71.0709 69.8063 67.3414L65.8811 46.7082L82.4769 32.1019C85.4601 29.4784 83.8115 24.898 79.6979 24.3591L56.7589 21.3386L46.5062 2.5631C44.6692 -0.783584 39.3465 -0.826126 37.4938 2.5631Z" fill="#709FD0"/>
+                                </svg>
+                            </div>
+                            <div class="col valores">
+                                <?=$item->valores?>
+                            </div>
+                        </div>
 
-					<div class="pt40">
-						<div class="Plugin1 no_pagg po-h Plugin_grande1" itens="3" auto="30">
-							<? foreach ($equipe as $key => $value) { ?>
-								<div class="p15">
-								    <div class="">
-								        <div class="">
-								            <? $img->tags = ' class="db max-w100p m-a brt20" '; ?>
-								            <?=$img->img($value, 400, 370)?>
-								        </div>
-								        <div class="p20 brb20 bs1">
-								            <div class="fz20 fwb limit"><?=$value->nome?></div>
-								            <div class="pt10 fz14 lh24"><?=$value->txt?></div>
-					                        <ul class="pt10 tac fz24 fwb">
-				                                <?=$value->instagram ? '<li class="dib vam hh rubberBand"><a href="'.http($value->instagram).'" class="pl10 pr10 cor_'.COR1.' br50p" target="_blank"><i class="faa-instagram"></i></a></li>' : ''?>
-				                                <?=$value->facebook ? '<li class="dib vam hh rubberBand"><a href="'.http($value->facebook).'" class="pl10 pr10 cor_'.COR1.' br50p" target="_blank"><i class="faa-facebook"></i></a></li>' : ''?>
-				                                <?=$value->linkedin ? '<li class="dib vam hh rubberBand"><a href="'.http($value->linkedin).'" class="pl10 pr10 cor_'.COR1.' br50p" target="_blank"><i class="faa-linkedin"></i></a></li>' : ''?>
-					                        </ul>
-								        </div>
-								    </div>
-								</div>
-							<? } ?>
-						</div>
-					</div>
-			        <div class="clear"></div>
-				</div>
-			</div>
+                        <div class="row">
+                            <div class="col-md-1">
+                                <svg width="87" height="87" viewBox="0 0 87 87" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_51_3270)">
+                                        <path d="M85.819 3.24551C85.7098 2.73701 85.4561 2.27087 85.0883 1.90312C84.7206 1.53536 84.2544 1.28165 83.7459 1.17246C78.2745 0 73.9941 0 69.7291 0C52.1931 0 41.675 9.37969 33.8263 21.75H16.1204C14.6083 21.7513 13.1263 22.1729 11.8399 22.9678C10.5536 23.7626 9.5135 24.8994 8.83588 26.2512L0.438343 43.0395C0.128223 43.6614 -0.0178245 44.3523 0.0140611 45.0465C0.0459466 45.7407 0.254708 46.4153 0.620531 47.0061C0.986355 47.597 1.4971 48.0846 2.10431 48.4226C2.71151 48.7606 3.39502 48.9379 4.08996 48.9375H21.7228L17.9046 52.7556C16.8851 53.7753 16.3124 55.1582 16.3124 56.6001C16.3124 58.042 16.8851 59.4249 17.9046 60.4446L26.5536 69.0953C27.0586 69.6004 27.658 70.001 28.3178 70.2744C28.9776 70.5477 29.6848 70.6884 30.399 70.6884C31.1131 70.6884 31.8203 70.5477 32.4801 70.2744C33.1399 70.001 33.7394 69.6004 34.2443 69.0953L38.0624 65.2772V82.9219C38.0622 83.6166 38.2395 84.2999 38.5774 84.9068C38.9154 85.5138 39.4028 86.0244 39.9934 86.3902C40.584 86.756 41.2583 86.9648 41.9522 86.9969C42.6462 87.029 43.3369 86.8832 43.9587 86.5735L60.73 78.1811C62.084 77.5047 63.2227 76.4642 64.0181 75.1766C64.8135 73.8889 65.2342 72.405 65.2329 70.8914V53.1499C77.5676 45.2825 86.9829 34.7303 86.9829 17.2811C86.9999 12.999 86.9999 8.71699 85.819 3.24551ZM65.2499 28.5469C63.9057 28.5469 62.5915 28.1482 61.4738 27.4014C60.3561 26.6545 59.4849 25.593 58.9705 24.3511C58.456 23.1091 58.3214 21.7425 58.5837 20.424C58.8459 19.1055 59.4933 17.8944 60.4438 16.9439C61.3944 15.9933 62.6055 15.346 63.9239 15.0837C65.2424 14.8215 66.609 14.9561 67.851 15.4705C69.093 15.9849 70.1545 16.8561 70.9013 17.9739C71.6482 19.0916 72.0468 20.4057 72.0468 21.75C72.0468 23.5526 71.3307 25.2815 70.0561 26.5561C68.7814 27.8308 67.0526 28.5469 65.2499 28.5469Z" fill="#9B9DD2"/>
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_51_3270">
+                                            <rect width="87" height="87" fill="white"/>
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <div class="col missao">
+                                <?=$item->missao?>
+                            </div>
+                        </div>
 
-		<? } ?>
+                        <div class="row">
+                            <div class="col-md-1">
+                                <svg width="95" height="59" viewBox="0 0 95 59" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M94.4261 27.3906C85.4819 11.4341 67.775 0.638184 47.5 0.638184C27.225 0.638184 9.51312 11.4417 0.573869 27.3921C0.196577 28.0745 0 28.8284 0 29.593C0 30.3577 0.196577 31.1116 0.573869 31.794C9.51807 47.7504 27.225 58.5464 47.5 58.5464C67.775 58.5464 85.4869 47.7429 94.4261 31.7925C94.8034 31.1101 95 30.3562 95 29.5915C95 28.8269 94.8034 28.073 94.4261 27.3906ZM47.5 51.3079C42.8027 51.3079 38.2109 50.0343 34.3052 47.6481C30.3995 45.262 27.3554 41.8705 25.5578 37.9025C23.7602 33.9345 23.2899 29.5682 24.2063 25.3558C25.1227 21.1434 27.3847 17.274 30.7062 14.2371C34.0277 11.2001 38.2595 9.13187 42.8666 8.29397C47.4736 7.45607 52.249 7.88611 56.5887 9.52971C60.9285 11.1733 64.6377 13.9567 67.2474 17.5278C69.8571 21.0989 71.25 25.2974 71.25 29.5923C71.2516 32.4444 70.6383 35.2688 69.4453 37.9041C68.2523 40.5394 66.5029 42.9339 64.2972 44.9506C62.0915 46.9674 59.4727 48.5669 56.5905 49.6577C53.7084 50.7485 50.6193 51.3093 47.5 51.3079ZM47.5 15.1152C46.0868 15.1333 44.6826 15.3255 43.3256 15.6868C44.4442 17.0767 44.981 18.7871 44.8386 20.5079C44.6962 22.2286 43.8841 23.8457 42.5496 25.066C41.215 26.2862 39.4464 27.0287 37.5645 27.1589C35.6825 27.2891 33.8118 26.7983 32.2917 25.7755C31.4261 28.6914 31.5824 31.7821 32.7385 34.6125C33.8946 37.443 35.9924 39.8707 38.7366 41.5539C41.4808 43.2371 44.7331 44.0912 48.036 43.9958C51.3388 43.9004 54.5257 42.8603 57.1483 41.0221C59.7708 39.1838 61.6968 36.6399 62.6552 33.7484C63.6136 30.8569 63.5562 27.7633 62.4911 24.9032C61.4259 22.0431 59.4066 19.5604 56.7174 17.8045C54.0282 16.0487 50.8045 15.1081 47.5 15.1152Z" fill="#C39CD4"/>
+                                </svg>
+                            </div>
+                            <div class="col visao">
+                                <?=$item->visao?>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            <section class="container">
+                <div class="row">
+                    <div class="col">
+                        <h1>NOSSA EQUIPE</h1>
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <? foreach ($equipe as $key => $value) { ?>
+                        <div class="col-md-4 col-sm-12 aligncenter">
+                            <? $img->tags = ' class="team-member-img" ' ?>
+                            <?=$img->img($value, 300, 300)?>
+                            <div class="team-member-name"><?=$value->nome?></div>
+                            <div class="team-member-bio"><?=$value->txt?></div>
+                        </div>
+                    <? } ?>
+                </div>
+            </section>
+
+		<? }else{ ?>
+
+        <section class="container text">
+            <div class="row justify-content-md-center">
+                <div class="col-md-8">
+                <?=txt($item)?>
+                </div>
+            </div>
+        </section>
+
+        <? } ?>
 
 	</section>
